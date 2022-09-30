@@ -10,18 +10,17 @@ as a musician lies in the ability to be self analyse the technical nature of our
 music preference is inherently bias. While practicing to become objectively more skilled at an instrument,
 biases can help focus one's effort in a specific area but this can also lead to ignorance of
 certain techniques and ideas. In this regard, third-party instrument improvement tracking and analysis
-that offers users a comprehensive platform to write and save new songs (chord progressions), transcribe
-their own performance, and have useful analytics about their own playing. All together, the app could 
+that offers users a comprehensive platform to **write and save new songs** (chord progressions), **transcribe**
+their own performance, and have **useful analytics** about their own playing. All together, the app could 
 provide musicians with deeper objective insight on their playing without necessarily having to study with 
 a tutor or pay for lessons.
 
 To focus on improvisation, users should be able to transcribe their playing into the application and be able to
-compare transcriptions overtime. Long term analytical data will likely be a defining feature as musicians will be able
-to quantify their progression instead of subjectively "sounding better", ie more diverse chord use,
-ability to play faster, longer phrasing, outlining progressions better.
+**compare transcriptions overtime**. Long term analytical data will likely be a defining feature as musicians will be able
+to quantify their progression instead of subjectively "sounding better", ie *more diverse chord use,
+ability to play faster, longer phrasing, outlining progressions better*.
 
 
-An example of text with **bold** and *italic* fonts.
 
 ## User Stories
 
