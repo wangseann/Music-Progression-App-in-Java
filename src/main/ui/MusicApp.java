@@ -15,7 +15,7 @@ import static model.TimeSignatures.*;
 //Music progression app
 public class MusicApp {
     private Scanner input;
-    private List<Progression> progressionsList = new ArrayList<>();
+
     private Playlist playlist = new Playlist();
 
     //EFFECTS: runs the music application
@@ -79,7 +79,6 @@ public class MusicApp {
         handleNewProgSetup(prog);
         addMusicToProg(prog);
         printProgReceipt(prog);
-        progressionsList.add(prog);
         playlist.addProgression(prog);
 
         System.out.println("\nReturning to main Menu");
@@ -87,7 +86,7 @@ public class MusicApp {
 
     //MODIFIES: this
     //EFFECTS: set up of new progression to user specifications
-    private Progression handleNewProgSetup(Progression prog) {
+    private void handleNewProgSetup(Progression prog) {
         String name;
         String key;
         int tempo;
@@ -110,8 +109,6 @@ public class MusicApp {
         int i = Integer.parseInt(input.next());
         ts = handleTimeSignature(i);
         prog.setTimeSignature(ts);
-
-        return prog;
     }
 
 
@@ -144,14 +141,6 @@ public class MusicApp {
 
     }
 
-    private void printListOfProgs(List<Progression> progressionsList) {
-        for (Progression p : progressionsList) {
-            System.out.println("\tName:" + p.getName());
-            System.out.println("\tKey:" + p.getKey());
-            System.out.println("\tTempo:" + p.getTempo());
-            System.out.println("\tTime Signature:" + p.getTimeSignature());
-        }
-    }
 
     //MODIFIES: this
     //EFFECTS: adds notes to progression
@@ -176,7 +165,7 @@ public class MusicApp {
         System.out.println("\tNotes/Chords:" + p.getNotes());
     }
 
-    //MODIFIES:
+
     //EFFECTS: returns time signature specified by user
     private TimeSignatures handleTimeSignature(int next) {
         if (next == 1) {
@@ -192,10 +181,9 @@ public class MusicApp {
         }
     }
 
-    //EFFECTS: ask user to save progression to list of progressions
+    //EFFECTS: save progression to list of progressions
     private void addProgressionToList(Progression p) {
         playlist.addProgression(p);
-        progressionsList.add(p);
         System.out.println(p.getName() + " added to Progressions List");
     }
 

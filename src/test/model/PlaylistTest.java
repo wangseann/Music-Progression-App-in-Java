@@ -54,5 +54,11 @@ class PlaylistTest {
         assertEquals(3, playlist.size());
     }
 
+    @Test
+    void containsTest() {
+        assertTrue(this.playlist.contains(p1));
+        assertFalse(this.playlist.contains(p4));
+    }
+
 
 }
