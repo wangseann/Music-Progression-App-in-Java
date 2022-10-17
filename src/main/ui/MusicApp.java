@@ -109,6 +109,7 @@ public class MusicApp {
         int i = Integer.parseInt(input.next());
         ts = handleTimeSignature(i);
         prog.setTimeSignature(ts);
+
     }
 
 
@@ -116,7 +117,7 @@ public class MusicApp {
     private void openOldProg() {
         Progression selectedProg;
         System.out.println("Old Progressions:");
-        playlist.printListOfProgs();
+        printListOfProgs(playlist);
 
 
         System.out.println("Select Progression by typing its name:");
@@ -187,5 +188,14 @@ public class MusicApp {
         System.out.println(p.getName() + " added to Progressions List");
     }
 
+    //EFFECTS: prints list of progessions in playlist
+    public void printListOfProgs(Playlist playlist) {
+        for (Progression p : playlist.listOfProgs()) {
+            System.out.println("\tName:" + p.getName());
+            System.out.println("\tKey:" + p.getKey());
+            System.out.println("\tTempo:" + p.getTempo());
+            System.out.println("\tTime Signature:" + p.getTimeSignature());
+        }
+    }
 
 }

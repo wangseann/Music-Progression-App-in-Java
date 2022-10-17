@@ -49,18 +49,15 @@ public class Playlist {
         return playlist.size();
     }
 
-    //EFFECTS: prints list of progessions in playlist
-    public void printListOfProgs() {
-        for (Progression p : playlist) {
-            System.out.println("\tName:" + p.getName());
-            System.out.println("\tKey:" + p.getKey());
-            System.out.println("\tTempo:" + p.getTempo());
-            System.out.println("\tTime Signature:" + p.getTimeSignature());
-        }
-    }
+
 
     //EFFECTS: checks if playlist contains progression
     public boolean contains(Progression p1) {
         return this.playlist.contains(p1);
+    }
+
+    //EFFECTS: constructs and returns list of progressions in playlist
+    public List<Progression> listOfProgs() {
+        return new ArrayList<>(playlist);
     }
 }

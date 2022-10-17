@@ -14,6 +14,7 @@ class PlaylistTest {
     Progression p3 = new Progression("songC", "E",210, TimeSignatures.THREE_FOUR);
     Progression p4 = new Progression("songD", "F",210, TimeSignatures.THREE_FOUR);
 
+
     @BeforeEach
     void testSetUp() {
         this.playlist.addProgression(p1);
@@ -60,5 +61,11 @@ class PlaylistTest {
         assertFalse(this.playlist.contains(p4));
     }
 
-
+    @Test
+    void ListOfProgsTest() {
+        assertTrue(this.playlist.listOfProgs().contains(p1));
+        assertTrue(this.playlist.listOfProgs().contains(p2));
+        assertTrue(this.playlist.listOfProgs().contains(p3));
+        assertFalse(this.playlist.listOfProgs().contains(p4));
+    }
 }
