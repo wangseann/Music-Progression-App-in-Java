@@ -24,18 +24,12 @@ ability to play faster, longer phrasing, outlining progressions better*.
 
 ## User Stories
 
-- As a user, I want to be able to add chords to a new progression.
-- As a user, I want to be able to start and save new progressions into a list of saved progressions.
-- As a user, I want to be able to open old progressions.
-- As a user, I want to be able to insert new chord progressions.
-- As a user, I want to be able to play along to existing progressions.
+- As a user, I want to be able to create a progression with a title, key, tempo, and time signature.
+- As a user, I want to be able to save new progressions into a list of saved progressions(playlist).
+- As a user, I want to be able to view, remove, and modify old progressions.
+- As a user, I want to be able to add notes and chord numbers to new or existing progressions. 
 
-- As a user, I want to be able to play a "keyboard" and display the notes on sheet music.
 
-- As a user, I want useful analytics about what I played.
-- As a user, I want to be able to play back transcriptions.
-- As a user, I want to be able to compare my playing with a transcription (uploaded or saved).
-- As a user, I want to be able to track the analytics overtime.
 
 
 
