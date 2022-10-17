@@ -129,10 +129,10 @@ public class MusicApp {
 
         if (input.next().equals("M")) {
             handleNewProgSetup(selectedProg);
-        } else if (input.next().equals("V")) {
+        } else if (input.nextLine().equals("V")) {
             printProgReceipt(selectedProg);
             return;
-        } else if (input.next().equals("R")) {
+        } else if (input.nextLine().equals("R")) {
             playlist.removeProgression(selectedProg.getName());
             System.out.println(selectedProg.getName() + " deleted.");
             return;
