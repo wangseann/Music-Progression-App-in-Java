@@ -28,7 +28,8 @@ ability to play faster, longer phrasing, outlining progressions better*.
 - As a user, I want to be able to save new progressions into a list of saved progressions(playlist).
 - As a user, I want to be able to view, remove, and modify old progressions.
 - As a user, I want to be able to add notes and chord numbers to new or existing progressions. 
-
+- As a user, I want to be able to save my progressions and playlists to file.
+  As a user, when I start the application, I want to be given the option to load my playlist from file.
 
 
 
