@@ -5,9 +5,10 @@ import java.util.List;
 
 public class Playlist {
     ArrayList<Progression> playlist;
+    private String date;
 
     public Playlist() {
-        this.playlist = new ArrayList<>();
+        this.playlist = new ArrayList<Progression>();
     }
 
     //MODIFIES: this
@@ -50,7 +51,6 @@ public class Playlist {
     }
 
 
-
     //EFFECTS: checks if playlist contains progression
     public boolean contains(Progression p1) {
         return this.playlist.contains(p1);
@@ -59,5 +59,15 @@ public class Playlist {
     //EFFECTS: constructs and returns list of progressions in playlist
     public List<Progression> listOfProgs() {
         return new ArrayList<>(playlist);
+    }
+
+    //EFFECTS: sets playlist date as given date
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    //EFFECTS: returns playlist date as string
+    public String getDate() {
+        return this.date;
     }
 }

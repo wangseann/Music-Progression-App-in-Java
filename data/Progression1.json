@@ -1,0 +1,13 @@
+{
+    "thingies": [
+        {
+            "name": "needle",
+            "category": "STITCHING"
+        },
+        {
+            "name": "thread",
+            "category": "STITCHING"
+        }
+    ],
+    "name": "playlist 1"
+}
