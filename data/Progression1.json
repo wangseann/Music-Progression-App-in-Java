@@ -1,13 +1,13 @@
 {
-    "thingies": [
-        {
-            "name": "needle",
-            "category": "STITCHING"
-        },
-        {
-            "name": "thread",
-            "category": "STITCHING"
-        }
-    ],
-    "name": "playlist 1"
+  "properties": [
+    {
+      "key": "C",
+      "tempo": "200",
+      "time signature": "FOUR_FOUR",
+      "notes": "ABC",
+      "chords": "IV V I"
+    }
+  ],
+  "name": "Song1"
 }
+//QUESTION: how do i format this json file?
