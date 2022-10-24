@@ -6,6 +6,7 @@ import java.util.List;
 public class Playlist {
     ArrayList<Progression> playlist;
     private String date;
+    private String name;
 
     public Playlist() {
         this.playlist = new ArrayList<Progression>();
@@ -70,4 +71,16 @@ public class Playlist {
     public String getDate() {
         return this.date;
     }
+
+    //EFFECTS: sets playlist name as given name
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    //EFFECTS: returns playlist name as string
+    public String getName() {
+        return this.name;
+    }
+
+
 }
