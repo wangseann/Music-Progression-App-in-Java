@@ -1,4 +1,4 @@
-package Persisitance;
+package persisitance;
 
 
 
@@ -9,11 +9,13 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 import model.Playlist;
+import model.Progression;
+import model.TimeSignatures;
 import org.json.*;
 
 
 public class JsonReader {
-    private String source;
+    private final String source;
 
     //EFFECTS: constructs reader to read from source file
     public JsonReader(String source) {
@@ -32,7 +34,7 @@ public class JsonReader {
     private String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
 
-        try(Stream<String> stream = Files.lines( Paths.get(source), StandardCharsets.UTF_8)) {
+        try (Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8)) {
             stream.forEach(s -> contentBuilder.append(s));
         }
 
@@ -51,9 +53,41 @@ public class JsonReader {
     // MODIFIES: playlist
     // EFFECTS: parses info from JSON object and adds them to playlist
     private void addInfo(Playlist playlist, JSONObject jsonObject) {
-        JSONArray jsonArray = jsonObject.getJSONArray("properties");
+        JSONArray jsonArray = jsonObject.getJSONArray("progressions");
         for (Object json : jsonArray) {
-
+            JSONObject nextProgression = (JSONObject) json;
+            addProgression(playlist, nextProgression);
         }
+    }
+
+    //MODIFIES: playlist
+    //EFFECTS: parses progression from JSON object and adds it to playlist
+    private void addProgression(Playlist playlist, JSONObject jsonObject) {
+        String name = jsonObject.getString("progression name");
+        String key = jsonObject.getString("key");
+        int tempo = jsonObject.getInt("tempo");
+        String timeSignatureString = jsonObject.getString("time signature");
+        String notes = jsonObject.getString("notes");
+        TimeSignatures timeSignature = null;
+
+        switch (timeSignatureString) {
+            case "FOUR_FOUR":
+                timeSignature = TimeSignatures.FOUR_FOUR;
+                break;
+
+            case "THREE_FOUR":
+                timeSignature = TimeSignatures.THREE_FOUR;
+                break;
+
+            case "SEVEN_FOUR":
+                timeSignature = TimeSignatures.SEVEN_FOUR;
+                break;
+        }
+
+
+        Progression progression = new Progression(name, key, tempo, timeSignature);
+        progression.setNotes(notes);
+
+        playlist.addProgression(progression);
     }
 }

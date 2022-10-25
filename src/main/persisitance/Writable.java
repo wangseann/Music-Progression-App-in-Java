@@ -1,4 +1,4 @@
-package Persisitance;
+package persisitance;
 
 public interface Writable {
 }

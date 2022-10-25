@@ -1,6 +1,6 @@
 package Persistance;
 
-import Persisitance.JsonReader;
+import persisitance.JsonReader;
 import model.Playlist;
 import model.Progression;
 import org.junit.jupiter.api.Test;

@@ -1,13 +1,14 @@
 package Persistance;
 
-import Persisitance.JsonReader;
-import Persisitance.JsonWriter;
+import persisitance.JsonReader;
+import persisitance.JsonWriter;
 import model.Playlist;
 import model.Progression;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.List;
+import org.json.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
