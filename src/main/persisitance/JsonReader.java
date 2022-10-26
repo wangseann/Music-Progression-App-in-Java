@@ -25,9 +25,18 @@ public class JsonReader {
     // EFFECTS: reads playlist from file and returns it;
     // throws IOException if an error occurs reading data form file
     public Playlist read() throws IOException {
-        String jsonData = readFile(source);
-        JSONObject jsonObject = new JSONObject(jsonData);
-        return parsePlaylist(jsonObject);
+        Playlist playlist = new Playlist();
+        try {
+            String jsonData = readFile(source);
+            JSONObject jsonObject = new JSONObject(jsonData);
+            playlist = parsePlaylist(jsonObject);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+        return playlist;
     }
 
     //EFFECTS: reads source file as string and returns it
@@ -39,7 +48,6 @@ public class JsonReader {
         } catch (IOException e) {
             System.out.println("\nIO Exception");
         }
-
         return contentBuilder.toString();
     }
 

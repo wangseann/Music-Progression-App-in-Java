@@ -16,7 +16,7 @@ public class JsonReaderTest extends JsonTest{
 
     @Test
     void testReaderNonExistantFile() {
-        JsonReader reader = new JsonReader("./data/noSuchFile.json");
+        JsonReader reader = new JsonReader("./data/noSuchFile1.json");
         try {
             Playlist playlist = reader.read();
             fail("IOException expected");
@@ -44,7 +44,7 @@ public class JsonReaderTest extends JsonTest{
         p1.setNotes("ABC");
         Progression p2 = new Progression("song2", "D", 200, TimeSignatures.SEVEN_FOUR);
         p2.setNotes("DEF");
-        Progression p3 = new Progression("song3", "E", 300, TimeSignatures.FOUR_FOUR);
+        Progression p3 = new Progression("song3", "E", 300, TimeSignatures.THREE_FOUR);
         p3.setNotes("ABC");
 
         try {
