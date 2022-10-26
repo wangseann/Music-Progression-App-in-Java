@@ -36,6 +36,8 @@ public class JsonReader {
 
         try (Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8)) {
             stream.forEach(s -> contentBuilder.append(s));
+        } catch (IOException e) {
+            System.out.println("\nIO Exception");
         }
 
         return contentBuilder.toString();

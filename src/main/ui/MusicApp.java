@@ -4,9 +4,11 @@ package ui;
 import model.Playlist;
 import model.Progression;
 import model.TimeSignatures;
+import persisitance.JsonReader;
+import persisitance.JsonWriter;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 import static model.TimeSignatures.*;
@@ -19,13 +21,17 @@ public class MusicApp {
     private Playlist playlist = new Playlist();
 
     //EFFECTS: runs the music application
-    public MusicApp() {
-        runMusicApp();
+    public MusicApp() throws IOException {
+        try {
+            runMusicApp();
+        } catch (IOException e) {
+            System.out.println("Exception Found");
+        }
     }
 
     //MODIFIES: this
     //EFFECTS: processes user input
-    private void runMusicApp() {
+    private void runMusicApp() throws IOException {
         boolean keepGoing = true;
         String command = null;
 
@@ -38,14 +44,56 @@ public class MusicApp {
             command = command.toLowerCase();
 
             if (command.equals("q")) {
+                promptToSave();
                 keepGoing = false;
             } else if (command.equals("n")) {
                 openNewProg();
             } else if (command.equals("o")) {
                 openOldProg();
+            } else if (command.equals("s")) {
+                openSavedPlaylists();
             } else {
                 processCommand(command);
             }
+        }
+    }
+
+    //EFFECTS:prompt to save
+    private void promptToSave() {
+        System.out.println("\nDo you wish to save progressions in current playlist to file? Y/N");
+
+        if (input.nextLine().equals("Y")) {
+            saveProgInPlaylist(playlist);
+        } else if (input.nextLine().equals("N")) {
+            System.out.println("Are you sure? Y/N");
+            if (input.nextLine().equals("Y")) {
+                saveProgInPlaylist(playlist);
+            }
+        }
+    }
+
+    //EFFECTS: save progressions in given playlist to file
+    private void saveProgInPlaylist(Playlist playlist) {
+        try {
+            JsonWriter writer = new JsonWriter("./data/savedPlaylists.json");
+            writer.open();
+            writer.write(playlist);
+            writer.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("\nFile not found");
+        }
+    }
+
+    //EFFECTS: return new display for opening a saved playlist
+    private void openSavedPlaylists() throws IOException {
+        System.out.println("\nSaved Playlists...");
+
+        try {
+            JsonReader reader = new JsonReader("./data/savedPlaylists.json");
+            playlist = reader.read();
+            printListOfProgs(playlist);
+        } catch (IOException e) {
+            System.out.println("\nIO Exception");
         }
     }
 
@@ -68,6 +116,7 @@ public class MusicApp {
         System.out.println("\nSelect from:");
         System.out.println("\tn -> new progression");
         System.out.println("\to -> open progression");
+        System.out.println("\ts -> saved playlists");
         System.out.println("\tq -> quit");
     }
 

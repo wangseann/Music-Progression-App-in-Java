@@ -1,0 +1,16 @@
+{"progressions": [
+    {
+        "time signature": "FOUR_FOUR",
+        "notes": "B C D B",
+        "progression name": "Blackbird",
+        "tempo": 85,
+        "key": "G"
+    },
+    {
+        "time signature": "FOUR_FOUR",
+        "notes": "I IV V",
+        "progression name": "Yellow",
+        "tempo": 200,
+        "key": "C"
+    }
+]}
