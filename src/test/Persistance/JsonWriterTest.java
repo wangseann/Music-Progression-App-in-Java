@@ -50,13 +50,12 @@ public class JsonWriterTest extends JsonTest{
 
     @Test
     void testWriterGeneralPlaylist() {
+        Playlist playlist = new Playlist();
+        playlist.setName("playlist1");
+        playlist.setDate("April 1st 2022");
+        Progression p1 = new Progression("Blackbird", "G maj", 80, TimeSignatures.FOUR_FOUR);
+        Progression p2 = new Progression("SUPERPOSITION", "Eb maj", 65, TimeSignatures.FOUR_FOUR);
         try {
-            Playlist playlist = new Playlist();
-            playlist.setName("playlist1");
-            playlist.setDate("April 1st 2022");
-            Progression p1 = new Progression("Blackbird", "G maj", 80, TimeSignatures.FOUR_FOUR);
-            Progression p2 = new Progression("SUPERPOSITION", "Eb maj", 65, TimeSignatures.FOUR_FOUR);
-
             playlist.addProgression(p1);
             playlist.addProgression(p2);
             JsonWriter writer = new JsonWriter("./data/testWriterGeneralPlaylist.json");

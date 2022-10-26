@@ -45,13 +45,13 @@ public class JsonReaderTest extends JsonTest{
         Progression p2 = new Progression("song2", "D", 200, TimeSignatures.SEVEN_FOUR);
         p2.setNotes("DEF");
         Progression p3 = new Progression("song3", "E", 300, TimeSignatures.FOUR_FOUR);
-        p3.setNotes("ABD");
+        p3.setNotes("ABC");
 
         try {
 
             Playlist playlist = reader.read();
-            assertEquals("playlist1",playlist.getName());
-            assertEquals("April 1 2021",playlist.getDate());
+            assertEquals("playlist1", playlist.getName());
+            assertEquals("April 1 2021", playlist.getDate());
             List<Progression> progressionList = playlist.listOfProgs();
             Progression prog1 = progressionList.get(0);
             Progression prog2 = progressionList.get(1);

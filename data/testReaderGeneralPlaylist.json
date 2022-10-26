@@ -1,4 +1,5 @@
 {
+  "date": "April 1 2021",
   "progressions": [
     {
       "progression name": "song1",
@@ -22,6 +23,5 @@
       "notes": "ABC"
     }
   ],
-  "name": "playlist1",
-  "date": "April 1 2021"
+  "name": "playlist1"
 }

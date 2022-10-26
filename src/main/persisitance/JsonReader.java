@@ -44,8 +44,10 @@ public class JsonReader {
     //EFFECTS: parses playlist from JSON object and returns it
     private Playlist parsePlaylist(JSONObject jsonObject) {
         String name = jsonObject.getString("name");
+        String date = jsonObject.getString("date");
         Playlist playlist = new Playlist();
         playlist.setName(name);
+        playlist.setDate(date);
         addInfo(playlist, jsonObject);
         return playlist;
     }
