@@ -1,0 +1,27 @@
+{
+  "progressions": [
+    {
+      "progression name": "song1",
+      "key": "C",
+      "tempo": 100,
+      "time signature": "FOUR_FOUR",
+      "notes": "ABC"
+    },
+    {
+      "progression name": "song2",
+      "key": "D",
+      "tempo": 200,
+      "time signature": "SEVEN_FOUR",
+      "notes": "DEF"
+    },
+    {
+      "progression name": "song3",
+      "key": "E",
+      "tempo": 300,
+      "time signature": "FOUR_FOUR",
+      "notes": "ABC"
+    }
+  ],
+  "name": "playlist1",
+  "date": "April 1 2021"
+}

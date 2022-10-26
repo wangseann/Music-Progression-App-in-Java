@@ -1,5 +1,6 @@
 package Persistance;
 
+import model.TimeSignatures;
 import persisitance.JsonReader;
 import model.Playlist;
 import model.Progression;
@@ -26,11 +27,11 @@ public class JsonReaderTest extends JsonTest{
 
     @Test
     void testReaderEmptyPlaylist() {
-        JsonReader reader = new JsonReader();
+        JsonReader reader = new JsonReader("./data/testReaderEmptyPlaylist.json");
         try {
             Playlist playlist = reader.read();
-            assertEquals(,playlist.getName());
-            assertEquals(,playlist.size());
+            assertEquals("playlist1",playlist.getName());
+            assertEquals(0,playlist.size());
         } catch (IOException e) {
             fail("Could not read from file");
         }
@@ -38,14 +39,27 @@ public class JsonReaderTest extends JsonTest{
 
     @Test
     void testReaderGeneralPlaylist() {
-        JsonReader reader = new JsonReader();
+        JsonReader reader = new JsonReader("./data/testReaderGeneralPlaylist.json");
+        Progression p1 = new Progression("song1", "C", 100, TimeSignatures.FOUR_FOUR);
+        p1.setNotes("ABC");
+        Progression p2 = new Progression("song2", "D", 200, TimeSignatures.SEVEN_FOUR);
+        p2.setNotes("DEF");
+        Progression p3 = new Progression("song3", "E", 300, TimeSignatures.FOUR_FOUR);
+        p3.setNotes("ABD");
+
         try {
+
             Playlist playlist = reader.read();
-            assertEquals(,playlist.getName());
-            assertEquals(,playlist.getDate());
+            assertEquals("playlist1",playlist.getName());
+            assertEquals("April 1 2021",playlist.getDate());
             List<Progression> progressionList = playlist.listOfProgs();
-            checkProgression();
-            checkProgression();
+            Progression prog1 = progressionList.get(0);
+            Progression prog2 = progressionList.get(1);
+            Progression prog3 = progressionList.get(2);
+
+            checkProgression(prog1.getName(), prog1.getKey(), prog1.getTempo(), prog1.getTimeSignature(), prog1.getNotes(), p1);
+            checkProgression(prog2.getName(), prog2.getKey(), prog2.getTempo(), prog2.getTimeSignature(), prog2.getNotes(), p2);
+            checkProgression(prog3.getName(), prog3.getKey(), prog3.getTempo(), prog3.getTimeSignature(), prog3.getNotes(), p3);
         } catch (IOException e) {
             fail("Could not read from file");
         }

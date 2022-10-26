@@ -1,0 +1,20 @@
+{
+    "date": "April 1st 2022",
+    "progressions": [
+        {
+            "time signature": "FOUR_FOUR",
+            "notes": "",
+            "progression name": "Blackbird",
+            "tempo": 80,
+            "key": "G maj"
+        },
+        {
+            "time signature": "FOUR_FOUR",
+            "notes": "",
+            "progression name": "SUPERPOSITION",
+            "tempo": 65,
+            "key": "Eb maj"
+        }
+    ],
+    "name": "playlist1"
+}

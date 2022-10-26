@@ -1,6 +1,9 @@
 package model;
 
-public class Progression {
+import org.json.JSONObject;
+import persisitance.Writable;
+
+public class Progression implements Writable {
     String name = "";
     String notes = "";
     String key = "";
@@ -55,6 +58,17 @@ public class Progression {
 
     public TimeSignatures getTimeSignature() {
         return timeSignature;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("progression name", name);
+        json.put("key", key);
+        json.put("tempo", tempo);
+        json.put("time signature", String.valueOf(timeSignature));
+        json.put("notes", notes);
+        return json;
     }
 }
 

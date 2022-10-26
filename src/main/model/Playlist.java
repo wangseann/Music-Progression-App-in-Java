@@ -1,9 +1,13 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persisitance.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Playlist {
+public class Playlist implements Writable {
     ArrayList<Progression> playlist;
     private String date;
     private String name;
@@ -83,4 +87,22 @@ public class Playlist {
     }
 
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("date", date);
+        json.put("progressions", progressionsToJson());
+        return json;
+    }
+
+    private JSONArray progressionsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Progression p :playlist) {
+            jsonArray.put(p.toJson());
+        }
+
+        return jsonArray;
+    }
 }

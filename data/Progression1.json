@@ -3,13 +3,12 @@
     {
       "progression name": "song1",
       "key": "C",
-      "tempo": "200",
+      "tempo": 200,
       "time signature": "FOUR_FOUR",
-      "notes": "ABC",
-      "chords": "IV V I"
+      "notes": "ABC"
     }
   ],
   "name": "playlist1",
-  "date": "",
+  "date": ""
 }
 //QUESTION: how do i format this json file?

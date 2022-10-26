@@ -1,5 +1,6 @@
 package Persistance;
 
+import model.TimeSignatures;
 import persisitance.JsonReader;
 import persisitance.JsonWriter;
 import model.Playlist;
@@ -31,6 +32,8 @@ public class JsonWriterTest extends JsonTest{
     void testWriterEmptyPlaylist() {
         try {
             Playlist playlist = new Playlist();
+            playlist.setName("playlist1");
+            playlist.setDate("April 1st 2022");
             JsonWriter writer = new JsonWriter("./data/testWriterEmptyPlaylist.json");
             writer.open();
             writer.write(playlist);
@@ -38,8 +41,8 @@ public class JsonWriterTest extends JsonTest{
 
             JsonReader reader = new JsonReader("./data/testWriterEmptyPlaylist.json");
             playlist = reader.read();
-            assertEquals(, playlist.getName());
-            assertEquals(, playlist.size());
+            assertEquals("playlist1", playlist.getName());
+            assertEquals(0, playlist.size());
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }
@@ -49,8 +52,13 @@ public class JsonWriterTest extends JsonTest{
     void testWriterGeneralPlaylist() {
         try {
             Playlist playlist = new Playlist();
-            playlist.addProgression(new Progression());
-            playlist.addProgression(new Progression());
+            playlist.setName("playlist1");
+            playlist.setDate("April 1st 2022");
+            Progression p1 = new Progression("Blackbird", "G maj", 80, TimeSignatures.FOUR_FOUR);
+            Progression p2 = new Progression("SUPERPOSITION", "Eb maj", 65, TimeSignatures.FOUR_FOUR);
+
+            playlist.addProgression(p1);
+            playlist.addProgression(p2);
             JsonWriter writer = new JsonWriter("./data/testWriterGeneralPlaylist.json");
             writer.open();
             writer.write(playlist);
@@ -58,11 +66,12 @@ public class JsonWriterTest extends JsonTest{
 
             JsonReader reader = new JsonReader("./data/testWriterGeneralPlaylist.json");
             playlist = reader.read();
-            assertEquals(,playlist.getName());
+            assertEquals("playlist1",playlist.getName());
             List<Progression> progressionList = playlist.listOfProgs();
-            assertEquals(,progressionList.size());
-            checkProgression();
-            checkProgression();
+            assertEquals(2,progressionList.size());
+            checkProgression("Blackbird", "G maj", 80, TimeSignatures.FOUR_FOUR,"",p1);
+            checkProgression("SUPERPOSITION", "Eb maj", 65, TimeSignatures.FOUR_FOUR,"", p2);
+
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }
