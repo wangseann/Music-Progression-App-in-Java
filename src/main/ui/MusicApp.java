@@ -63,6 +63,10 @@ public class MusicApp {
         System.out.println("\nDo you wish to save progressions in current playlist to file? Y/N");
 
         if (input.nextLine().equals("Y")) {
+            System.out.println("\nEnter Playlist Name:");
+            playlist.setName(input.nextLine());
+            System.out.println("\nEnter Playlist Date:");
+            playlist.setDate(input.nextLine());
             saveProgInPlaylist(playlist);
         } else if (input.nextLine().equals("N")) {
             System.out.println("Are you sure? Y/N");
