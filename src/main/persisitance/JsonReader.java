@@ -99,6 +99,8 @@ public class JsonReader {
             timeSignature = TimeSignatures.THREE_FOUR;
         } else if (timeSignatureString.equals("SEVEN_FOUR")) {
             timeSignature = TimeSignatures.SEVEN_FOUR;
+        } else {
+            timeSignature = TimeSignatures.FOUR_FOUR;
         }
 
 
