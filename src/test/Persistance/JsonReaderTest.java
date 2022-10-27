@@ -48,7 +48,7 @@ public class JsonReaderTest extends JsonTest{
         Progression p3 = new Progression("song3", "E", 300, TimeSignatures.THREE_FOUR);
         p3.setNotes("ABC");
         Progression p4 = new Progression("song4", "E", 300, TimeSignatures.FOUR_FOUR);
-        p3.setNotes("ABC");
+        p4.setNotes("ABC");
 
         try {
 
@@ -64,7 +64,7 @@ public class JsonReaderTest extends JsonTest{
             checkProgression(prog1.getName(), prog1.getKey(), prog1.getTempo(), prog1.getTimeSignature(), prog1.getNotes(), p1);
             checkProgression(prog2.getName(), prog2.getKey(), prog2.getTempo(), prog2.getTimeSignature(), prog2.getNotes(), p2);
             checkProgression(prog3.getName(), prog3.getKey(), prog3.getTempo(), prog3.getTimeSignature(), prog3.getNotes(), p3);
-            checkProgression(prog3.getName(), prog4.getKey(), prog4.getTempo(), prog4.getTimeSignature(), prog4.getNotes(), p4);
+            checkProgression(prog4.getName(), prog4.getKey(), prog4.getTempo(), prog4.getTimeSignature(), prog4.getNotes(), p4);
         } catch (IOException e) {
             fail("Could not read from file");
         } catch (NullPointerException e) {
