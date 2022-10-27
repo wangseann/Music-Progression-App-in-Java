@@ -21,6 +21,13 @@
       "tempo": 300,
       "time signature": "THREE_FOUR",
       "notes": "ABC"
+    },
+    {
+      "progression name": "song4",
+      "key": "E",
+      "tempo": 300,
+      "time signature": "",
+      "notes": "ABC"
     }
   ],
   "name": "playlist1"
