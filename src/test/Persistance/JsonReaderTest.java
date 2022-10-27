@@ -47,6 +47,8 @@ public class JsonReaderTest extends JsonTest{
         p2.setNotes("DEF");
         Progression p3 = new Progression("song3", "E", 300, TimeSignatures.THREE_FOUR);
         p3.setNotes("ABC");
+        Progression p4 = new Progression("song4", "E", 300, TimeSignatures.THREE_FOUR);
+        p3.setNotes("ABC");
 
         try {
 

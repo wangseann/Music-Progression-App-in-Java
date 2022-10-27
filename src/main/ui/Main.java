@@ -5,7 +5,7 @@ import model.Playlist;
 import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         try {
             new Playlist();
             new MusicApp();
@@ -15,3 +15,4 @@ public class Main {
 
     }
 }
+

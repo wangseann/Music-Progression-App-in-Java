@@ -75,18 +75,30 @@ public class JsonReader {
         String notes = jsonObject.getString("notes");
         TimeSignatures timeSignature = null;
 
-        switch (timeSignatureString) {
-            case "FOUR_FOUR":
-                timeSignature = TimeSignatures.FOUR_FOUR;
-                break;
+//        switch (timeSignatureString) {
+//            case "FOUR_FOUR":
+//                timeSignature = TimeSignatures.FOUR_FOUR;
+//                break;
+//
+//            case "THREE_FOUR":
+//                timeSignature = TimeSignatures.THREE_FOUR;
+//                break;
+//
+//            case "SEVEN_FOUR":
+//                timeSignature = TimeSignatures.SEVEN_FOUR;
+//                break;
+//
+//            default:
+//                timeSignature = TimeSignatures.FOUR_FOUR;
+//                break;
+//        }
 
-            case "THREE_FOUR":
-                timeSignature = TimeSignatures.THREE_FOUR;
-                break;
-
-            case "SEVEN_FOUR":
-                timeSignature = TimeSignatures.SEVEN_FOUR;
-                break;
+        if (timeSignatureString.equals("FOUR_FOUR")) {
+            timeSignature = TimeSignatures.FOUR_FOUR;
+        } else if (timeSignatureString.equals("THREE_FOUR")) {
+            timeSignature = TimeSignatures.THREE_FOUR;
+        } else if (timeSignatureString.equals("SEVEN_FOUR")) {
+            timeSignature = TimeSignatures.SEVEN_FOUR;
         }
 
 
