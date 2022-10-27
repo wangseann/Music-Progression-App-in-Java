@@ -26,15 +26,10 @@ public class JsonReader {
     // throws IOException if an error occurs reading data form file
     public Playlist read() throws IOException {
         Playlist playlist = new Playlist();
-        try {
-            String jsonData = readFile(source);
-            JSONObject jsonObject = new JSONObject(jsonData);
-            playlist = parsePlaylist(jsonObject);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
-        }
+
+        String jsonData = readFile(source);
+        JSONObject jsonObject = new JSONObject(jsonData);
+        playlist = parsePlaylist(jsonObject);
 
         return playlist;
     }
@@ -43,11 +38,9 @@ public class JsonReader {
     private String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
 
-        try (Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8)) {
-            stream.forEach(s -> contentBuilder.append(s));
-        } catch (IOException e) {
-            System.out.println("\nIO Exception");
-        }
+        Stream<String> stream = Files.lines(Paths.get(source),StandardCharsets.UTF_8);
+        stream.forEach(contentBuilder::append);
+
         return contentBuilder.toString();
     }
 

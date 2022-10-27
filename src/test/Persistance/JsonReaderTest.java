@@ -1,6 +1,7 @@
 package Persistance;
 
 import model.TimeSignatures;
+import org.json.JSONException;
 import persisitance.JsonReader;
 import model.Playlist;
 import model.Progression;
