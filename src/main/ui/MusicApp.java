@@ -62,17 +62,19 @@ public class MusicApp {
     private void promptToSave() {
         System.out.println("\nDo you wish to save progressions in current playlist to file? Y/N");
 
-        if (input.nextLine().equals("Y")) {
+        if (input.next().equals("y")) {
             System.out.println("\nEnter Playlist Name:");
-            playlist.setName(input.nextLine());
+            playlist.setName(input.next());
             System.out.println("\nEnter Playlist Date:");
-            playlist.setDate(input.nextLine());
+            playlist.setDate(input.next());
             saveProgInPlaylist(playlist);
-        } else if (input.nextLine().equals("N")) {
+        } else if (input.next().equals("n")) {
             System.out.println("Are you sure? Y/N");
-            if (input.nextLine().equals("Y")) {
+            if (input.nextLine().equals("y")) {
                 saveProgInPlaylist(playlist);
             }
+        } else {
+            System.out.println("not in if");
         }
     }
 
@@ -95,6 +97,8 @@ public class MusicApp {
         try {
             JsonReader reader = new JsonReader("./data/savedPlaylists.json");
             playlist = reader.read();
+            System.out.println(playlist.getName());
+            System.out.println(playlist.getDate());
             printListOfProgs(playlist);
         } catch (IOException e) {
             System.out.println("\nIO Exception");

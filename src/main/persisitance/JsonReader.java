@@ -25,7 +25,7 @@ public class JsonReader {
     // EFFECTS: reads playlist from file and returns it;
     // throws IOException if an error occurs reading data form file
     public Playlist read() throws IOException {
-        Playlist playlist = new Playlist();
+        Playlist playlist;
 
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
@@ -92,15 +92,6 @@ public class JsonReader {
                 timeSignature = TimeSignatures.FOUR_FOUR;
                 break;
         }
-//
-//        if (timeSignatureString.equals("FOUR_FOUR")) {
-//            timeSignature = TimeSignatures.FOUR_FOUR;
-//        } else if (timeSignatureString.equals("THREE_FOUR")) {
-//            timeSignature = TimeSignatures.THREE_FOUR;
-//        } else if (timeSignatureString.equals("SEVEN_FOUR")) {
-//            timeSignature = TimeSignatures.SEVEN_FOUR;
-//        }
-//
 
         Progression progression = new Progression(name, key, tempo, timeSignature);
         progression.setNotes(notes);

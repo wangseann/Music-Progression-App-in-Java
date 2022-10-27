@@ -99,7 +99,7 @@ public class Playlist implements Writable {
     private JSONArray progressionsToJson() {
         JSONArray jsonArray = new JSONArray();
 
-        for (Progression p :playlist) {
+        for (Progression p : playlist) {
             jsonArray.put(p.toJson());
         }
 
