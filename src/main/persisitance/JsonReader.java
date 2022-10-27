@@ -93,16 +93,7 @@ public class JsonReader {
 //                break;
 //        }
 
-        if (timeSignatureString.equals("FOUR_FOUR")) {
-            timeSignature = TimeSignatures.FOUR_FOUR;
-        } else if (timeSignatureString.equals("THREE_FOUR")) {
-            timeSignature = TimeSignatures.THREE_FOUR;
-        } else if (timeSignatureString.equals("SEVEN_FOUR")) {
-            timeSignature = TimeSignatures.SEVEN_FOUR;
-        } else {
-            timeSignature = TimeSignatures.FOUR_FOUR;
-        }
-
+        timeSignature.timeSignatureFromString(timeSignatureString);
 
         Progression progression = new Progression(name, key, tempo, timeSignature);
         progression.setNotes(notes);
