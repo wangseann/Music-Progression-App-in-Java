@@ -87,7 +87,9 @@ public class Playlist implements Writable {
     }
 
 
+
     @Override
+    //EFFECTS: returns playlist as json object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", name);
@@ -96,6 +98,7 @@ public class Playlist implements Writable {
         return json;
     }
 
+    //EFFECTS: returns progressions as json array
     private JSONArray progressionsToJson() {
         JSONArray jsonArray = new JSONArray();
 

@@ -7,6 +7,7 @@ import model.TimeSignatures;
 import persisitance.JsonReader;
 import persisitance.JsonWriter;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
@@ -21,7 +22,7 @@ public class MusicApp {
     private Playlist playlist = new Playlist();
 
     //EFFECTS: runs the music application
-    public MusicApp() throws IOException {
+    public MusicApp() {
         try {
             runMusicApp();
         } catch (IOException e) {
@@ -49,7 +50,11 @@ public class MusicApp {
             } else if (command.equals("n")) {
                 openNewProg();
             } else if (command.equals("o")) {
-                openOldProg();
+                if (playlist.size() == 0) {
+                    //return to main menu
+                } else {
+                    openOldProg();
+                }
             } else if (command.equals("s")) {
                 openSavedPlaylists();
             } else {
@@ -58,9 +63,10 @@ public class MusicApp {
         }
     }
 
-    //EFFECTS:prompt to save
+    //MODIFIES: playlist
+    //EFFECTS:prompt user to save progessions in playlist
     private void promptToSave() {
-        System.out.println("\nDo you wish to save progressions in current playlist to file? Y/N");
+        System.out.println("\nDo you wish to save progressions in current playlist to file? y/n");
 
         if (input.next().equals("y")) {
             System.out.println("\nEnter Playlist Name:");
@@ -69,7 +75,7 @@ public class MusicApp {
             playlist.setDate(input.next());
             saveProgInPlaylist(playlist);
         } else if (input.nextLine().equals("n")) {
-            System.out.println("Are you sure? Y/N");
+            System.out.println("Are you sure? y/n");
             if (input.nextLine().equals("n")) {
                 saveProgInPlaylist(playlist);
             }
@@ -88,23 +94,29 @@ public class MusicApp {
         }
     }
 
-    //EFFECTS: return new display for opening a saved playlist
+    //MODIFIES: playlist
+    //EFFECTS: read playlist from file and set as current playlist
     private void openSavedPlaylists() {
         System.out.println("\nSaved Playlists...");
-
-        try {
-            JsonReader reader = new JsonReader("./data/savedPlaylists.json");
-            playlist = reader.read();
-            System.out.println(playlist.getName());
-            System.out.println(playlist.getDate());
-            printListOfProgs(playlist);
-        } catch (IOException e) {
-            System.out.println("\nIO Exception");
+        File file = new File("./data/savedPlaylists.json");
+        if (file.length() == 0) {
+            //return to main menu
+        } else {
+            try {
+                JsonReader reader = new JsonReader("./data/savedPlaylists.json");
+                playlist = reader.read();
+                System.out.println(playlist.getName());
+                System.out.println(playlist.getDate());
+                printListOfProgs(playlist);
+            } catch (IOException e) {
+                System.out.println("\nIO Exception");
+            }
         }
     }
 
     //MODIFIES: this
     //EFFECTS: processes user command
+    //used later for midi keyboard
     private void processCommand(String command) {
         System.out.println("invalid input try again");
     }
@@ -126,7 +138,7 @@ public class MusicApp {
         System.out.println("\tq -> quit");
     }
 
-
+    //MODIFIES: playlist
     //EFFECTS: return new display for creating new progressions
     private void openNewProg() {
         System.out.println("\nCreating New Progression...");
@@ -146,7 +158,6 @@ public class MusicApp {
         String key;
         int tempo;
         TimeSignatures ts;
-        String notes;
 
         System.out.println("\nType Progression Name: eg. Song");
         name = input.next();
@@ -167,7 +178,7 @@ public class MusicApp {
 
     }
 
-
+    //MODIFIES: playlist
     //EFFECTS: handle old progressions page
     private void openOldProg() {
         Progression selectedProg;
@@ -177,12 +188,14 @@ public class MusicApp {
 
         System.out.println("Select Progression by typing its name:");
         String nameOfProg = input.next();
+
+
         selectedProg = playlist.getProgression(nameOfProg);
         System.out.println("Progression " + selectedProg.getName() + " selected");
 
         System.out.println("Select Modify(M) Remove(R) or View(V):");
 
-        if (input.next().equals("M")) {
+        if (input.nextLine().equals("M")) {
             handleNewProgSetup(selectedProg);
         } else if (input.nextLine().equals("V")) {
             printProgReceipt(selectedProg);
@@ -219,14 +232,14 @@ public class MusicApp {
         System.out.println("\tNotes/Chords:" + p.getNotes());
     }
 
-
+    //REQUIRES: int ts given is either 1,2, or 3
     //EFFECTS: returns time signature specified by user
-    private TimeSignatures handleTimeSignature(int next) {
-        if (next == 1) {
+    private TimeSignatures handleTimeSignature(int ts) {
+        if (ts == 1) {
             return FOUR_FOUR;
-        } else if (next == 2) {
+        } else if (ts == 2) {
             return THREE_FOUR;
-        } else if (next == 3) {
+        } else if (ts == 3) {
             return SEVEN_FOUR;
         } else {
             System.out.println("\nPlease choose one by entering the digit: 4/4(1) 3/4(2) 7/4(3)");
@@ -235,11 +248,6 @@ public class MusicApp {
         }
     }
 
-    //EFFECTS: save progression to list of progressions
-    private void addProgressionToList(Progression p) {
-        playlist.addProgression(p);
-        System.out.println(p.getName() + " added to Progressions List");
-    }
 
     //EFFECTS: prints list of progessions in playlist
     public void printListOfProgs(Playlist playlist) {

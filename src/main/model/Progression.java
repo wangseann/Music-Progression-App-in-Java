@@ -10,7 +10,8 @@ public class Progression implements Writable {
     int tempo = 0;
     TimeSignatures timeSignature;
 
-    //EFFECT: construct progression
+    //REQUIRES: int tempo > 0
+    //EFFECT: construct progression with given values
     public Progression(String name, String key, int tempo, TimeSignatures timeSignature) {
         setName(name);
         setKey(key);
@@ -60,6 +61,7 @@ public class Progression implements Writable {
         return timeSignature;
     }
 
+    //EFFECTS: returns progression as json object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
