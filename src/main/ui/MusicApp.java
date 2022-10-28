@@ -72,7 +72,7 @@ public class MusicApp {
             System.out.println("Are you sure? Y/N");
             if (input.nextLine().equals("n")) {
                 saveProgInPlaylist(playlist);
-            } 
+            }
         }
     }
 
