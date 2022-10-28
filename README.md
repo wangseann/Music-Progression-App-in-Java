@@ -8,7 +8,7 @@ large chord progression datasets, such as iRealBook, have been made readily acce
 through mobile phone applications. However, a common bottleneck in the path to improvement
 as a musician lies in the ability to be self analyse the technical nature of our playing. Music and
 music preference is inherently bias. While practicing to become objectively more skilled at an instrument,
-biases can help focus one's effort in a specific area but this can also lead to ignorance of
+biases can help focus one's effort in a specific area but can also lead to ignorance of
 certain techniques and ideas. In this regard, third-party instrument improvement tracking and analysis
 that offers users a comprehensive platform to **write and save new songs** (chord progressions), **transcribe**
 their own performance, and have **useful analytics** about their own playing. All together, the app could 

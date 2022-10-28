@@ -68,13 +68,11 @@ public class MusicApp {
             System.out.println("\nEnter Playlist Date:");
             playlist.setDate(input.next());
             saveProgInPlaylist(playlist);
-        } else if (input.next().equals("n")) {
+        } else if (input.nextLine().equals("n")) {
             System.out.println("Are you sure? Y/N");
-            if (input.nextLine().equals("y")) {
+            if (input.nextLine().equals("n")) {
                 saveProgInPlaylist(playlist);
-            }
-        } else {
-            System.out.println("not in if");
+            } 
         }
     }
 
@@ -91,7 +89,7 @@ public class MusicApp {
     }
 
     //EFFECTS: return new display for opening a saved playlist
-    private void openSavedPlaylists() throws IOException {
+    private void openSavedPlaylists() {
         System.out.println("\nSaved Playlists...");
 
         try {
@@ -124,7 +122,7 @@ public class MusicApp {
         System.out.println("\nSelect from:");
         System.out.println("\tn -> new progression");
         System.out.println("\to -> open progression");
-        System.out.println("\ts -> saved playlists");
+        System.out.println("\ts -> open saved playlist");
         System.out.println("\tq -> quit");
     }
 
@@ -188,11 +186,9 @@ public class MusicApp {
             handleNewProgSetup(selectedProg);
         } else if (input.nextLine().equals("V")) {
             printProgReceipt(selectedProg);
-            return;
         } else if (input.nextLine().equals("R")) {
             playlist.removeProgression(selectedProg.getName());
             System.out.println(selectedProg.getName() + " deleted.");
-            return;
         } else {
             System.out.println("invalid input try again");
         }
