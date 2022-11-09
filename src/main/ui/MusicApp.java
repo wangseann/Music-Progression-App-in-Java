@@ -195,7 +195,7 @@ public class MusicApp {
 
         System.out.println("Select Modify(M) Remove(R) or View(V):");
 
-        if (input.nextLine().equals("M")) {
+        if (input.next().equals("M")) {
             handleNewProgSetup(selectedProg);
         } else if (input.nextLine().equals("V")) {
             printProgReceipt(selectedProg);

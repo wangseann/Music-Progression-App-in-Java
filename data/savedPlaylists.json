@@ -1,5 +1,20 @@
 {
-    "date": "Feb 30, 2011",
-    "progressions": [],
-    "name": "Blaylist"
+    "date": "Jan 1 2000",
+    "progressions": [
+        {
+            "time signature": "FOUR_FOUR",
+            "notes": "C B D",
+            "progression name": "Song",
+            "tempo": 200,
+            "key": "C"
+        },
+        {
+            "time signature": "FOUR_FOUR",
+            "notes": "I IV V",
+            "progression name": "Song 3",
+            "tempo": 211,
+            "key": "C "
+        }
+    ],
+    "name": "playlist 2"
 }

@@ -31,6 +31,12 @@ ability to play faster, longer phrasing, outlining progressions better*.
 - As a user, I want to be able to save my progressions and playlists to file.
   As a user, when I start the application, I want to be given the option to load my playlist from file.
 
+# Instructions for Grader
 
+- You can generate the first required event related to adding Xs to a Y by pressing new progression and follow prompts to set fields.
+- You can generate the second required event related to adding Xs to a Y by pressing open progression and follow prompts to modify/remove/view existing progressions. 
+- You can locate my visual component by...
+- You can save the state of my application by pressing Q and Y when prompted to save current playlist. 
+- You can reload the state of my application by pressing saved progressions when opening the application. 
 
 
