@@ -6,29 +6,82 @@ import model.Progression;
 import model.TimeSignatures;
 import persisitance.JsonReader;
 import persisitance.JsonWriter;
+import ui.buttons.*;
+import ui.buttons.Button;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import static model.TimeSignatures.*;
 
 
 //Music progression app
-public class MusicApp {
-    private Scanner input;
+public class MusicApp extends JFrame {
+    public static final int WIDTH = 1000;
+    public static final int HEIGHT = 700;
 
+    private List<Button> buttons;
+    private Button activeButton;
+    private Playlist currentPlaylist;
+    private Progression currentProgression;
+
+    //dont need?
+    private Scanner input;
     private Playlist playlist = new Playlist();
 
+//    //EFFECTS: runs the music application
+//    public MusicApp() {
+//        try {
+//            runMusicApp();
+//        } catch (IOException e) {
+//            System.out.println("Exception Found");
+//        }
+//    }
+//
     //EFFECTS: runs the music application
     public MusicApp() {
-        try {
-            runMusicApp();
-        } catch (IOException e) {
-            System.out.println("Exception Found");
-        }
+        super("Music Application");
+        intializeFields();
+        initializeGraphics();
+        initializeInteraction();
     }
+
+    //MODIFIES: this
+    //EFFECTS: initializes a MusicMouseListener to be used in JFrame
+    private void initializeInteraction() {
+        MusicMouseListener musicMouseListener = new MusicMouseListener();
+        addMouseListener(musicMouseListener);
+        addMouseMotionListener(musicMouseListener);
+    }
+
+    //MODIFIES: this
+    //EFFECTS: draws JFrame window where MusicMouseListener will function to manipulate music app frame
+    private void initializeGraphics() {
+        setLayout(new BorderLayout());
+        setMaximumSize(new Dimension(WIDTH, HEIGHT));
+        createButtons();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    //MODIFIES: this
+    //EFFECTS: sets activeButton, currentPlaylist = null, currentProgression = null,
+    // and populates buttons with buttons being used.
+    private void intializeFields() {
+        activeButton = null;
+        currentProgression = null;
+        buttons = new ArrayList<Button>();
+    }
+
 
     //MODIFIES: this
     //EFFECTS: processes user input
@@ -259,4 +312,103 @@ public class MusicApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS:  a helper method which declares and instantiates all buttons
+    private void createButtons() {
+        JPanel buttonArea = new JPanel();
+        buttonArea.setLayout(new GridLayout(0,1));
+        buttonArea.setSize(new Dimension(0, 0));
+        add(buttonArea, BorderLayout.SOUTH);
+
+        Button newProgressionButton = new NewProgressionButton(this, buttonArea);
+        buttons.add(newProgressionButton);
+
+        Button openProgressionButton = new OpenProgressionButton(this, buttonArea);
+        buttons.add(openProgressionButton);
+
+        Button quitButton = new QuitButton(this, buttonArea);
+        buttons.add(quitButton);
+
+        Button savedProgressionsButton = new SavedProgressionsButton(this, buttonArea);
+        buttons.add(savedProgressionsButton);
+
+        Button savePlaylistButton = new SavePlaylistButton(this, buttonArea);
+        buttons.add(savePlaylistButton);
+
+        setActiveButton(newProgressionButton);  //? do i need active button?
+    }
+
+    //MODIFIES: this
+    //EFFECTS: sets the given button and the activeButton
+    private void setActiveButton(Button button) {
+        if (activeButton != null) {
+            activeButton.deactivate();
+        }
+        button.activate();
+        activeButton = button;
+    }
+
+    private class MusicMouseListener extends MouseAdapter {
+
+        // EFFECTS: Forward mouse pressed event to the active tool
+        public void mousePressed(MouseEvent e) {
+            handleMousePressed(translateEvent(e));
+        }
+
+        // EFFECTS: Forward mouse released event to the active tool
+        public void mouseReleased(MouseEvent e) {
+            handleMouseReleased(translateEvent(e));
+        }
+
+        // EFFECTS:Forward mouse clicked event to the active tool
+        public void mouseClicked(MouseEvent e) {
+            handleMouseClicked(translateEvent(e));
+        }
+
+        // EFFECTS:Forward mouse dragged event to the active tool
+        public void mouseDragged(MouseEvent e) {
+            handleMouseDragged(translateEvent(e));
+        }
+
+        // EFFECTS: translates the mouse event to current drawing's coordinate system
+        private MouseEvent translateEvent(MouseEvent e) {
+            return SwingUtilities.convertMouseEvent(e.getComponent(), e, currentProgression);
+        }
+    }
+
+    // EFFECTS: if activeTool != null, then mouseReleasedInDrawingArea is invoked on activeTool, depends on the
+    // type of the tool which is currently activeTool
+    private void handleMousePressed(MouseEvent e) {
+        if (activeButton != null) {
+            activeButton.mouseReleasedInDrawingArea(e);
+        }
+        repaint();
+    }
+
+    // EFFECTS: if activeTool != null, then mouseReleasedInDrawingArea is invoked on activeTool, depends on the
+    //          type of the tool which is currently activeTool
+    private void handleMouseReleased(MouseEvent e) {
+        if (activeButton != null) {
+            activeButton.mouseReleasedInDrawingArea(e);
+        }
+        repaint();
+    }
+
+    // EFFECTS: if activeTool != null, then mouseClickedInDrawingArea is invoked on activeTool, depends on the
+    //          type of the tool which is currently activeTool
+    private void handleMouseClicked(MouseEvent e) {
+        if (activeButton != null) {
+            activeButton.mouseClickedInDrawingArea(e);
+        }
+        repaint();
+    }
+
+    // EFFECTS: if activeTool != null, then mouseDraggedInDrawingArea is invoked on activeTool, depends on the
+    //          type of the tool which is currently activeTool
+    private void handleMouseDragged(MouseEvent e) {
+        if (activeButton != null) {
+            activeButton.mouseDraggedInDrawingArea(e);
+        }
+        repaint();
+    }
 }

@@ -3,7 +3,9 @@ package model;
 import org.json.JSONObject;
 import persisitance.Writable;
 
-public class Progression implements Writable {
+import javax.swing.*;
+
+public class Progression extends JPanel implements Writable {
     String name = "";
     String notes = "";
     String key = "";
