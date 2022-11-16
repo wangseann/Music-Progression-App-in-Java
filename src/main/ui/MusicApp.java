@@ -212,7 +212,7 @@ public class MusicApp extends JFrame {
         int tempo;
         TimeSignatures ts;
 
-        System.out.println("\nType Progression Name: eg. Song");
+        new TextFieldEvent();
         name = input.next();
         prog.setName(name);
 

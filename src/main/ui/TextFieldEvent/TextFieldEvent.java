@@ -1,10 +1,7 @@
 package ui.TextFieldEvent;
 
 import javax.swing.*;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
 public class TextFieldEvent {
 
@@ -19,6 +16,13 @@ public class TextFieldEvent {
     public TextFieldEvent() {
         panel.add(textField);
         panel.add(button);
+
+        //EFFECTS: close textfield frame on "ok" button press
+        button.addActionListener(e -> {
+            frame.setVisible(false); //you can't see me!
+            frame.dispose(); //Destroy the JFrame object
+        });
+
         frame.add(panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -28,12 +32,6 @@ public class TextFieldEvent {
                 JTextField textField = (JTextField) e.getSource();
                 String text = textField.getText();
                 textField.setText(text.toUpperCase());
-            }
-
-            public void keyTyped(KeyEvent e) {
-            }
-
-            public void keyPressed(KeyEvent e) {
             }
         });
     }
