@@ -6,6 +6,7 @@ import model.Progression;
 import model.TimeSignatures;
 import persisitance.JsonReader;
 import persisitance.JsonWriter;
+import ui.TextFieldEvent.TextFieldEvent;
 import ui.buttons.*;
 import ui.buttons.Button;
 
@@ -92,7 +93,7 @@ public class MusicApp extends JFrame {
         init();
 
         while (keepGoing) {
-            displayMenu();
+            //displayMenu();
 
             command = input.next();
             command = command.toLowerCase();
@@ -179,22 +180,21 @@ public class MusicApp extends JFrame {
     private void init() {
         input = new Scanner(System.in);
         input.useDelimiter("\n");
-
     }
 
-    //EFFECTS: produces menu of options
-    private void displayMenu() {
-        System.out.println("\nSelect from:");
-        System.out.println("\tn -> new progression");
-        System.out.println("\to -> open progression");
-        System.out.println("\ts -> open saved playlist");
-        System.out.println("\tq -> quit");
-    }
+//    //EFFECTS: produces menu of options
+//    private void displayMenu() {
+//        System.out.println("\nSelect from:");
+//        System.out.println("\tn -> new progression");
+//        System.out.println("\to -> open progression");
+//        System.out.println("\ts -> open saved playlist");
+//        System.out.println("\tq -> quit");
+//    }
 
     //MODIFIES: playlist
     //EFFECTS: return new display for creating new progressions
-    private void openNewProg() {
-        System.out.println("\nCreating New Progression...");
+    public void openNewProg() {
+        new TextFieldEvent();
         Progression prog = new Progression("","",0,FOUR_FOUR);
         handleNewProgSetup(prog);
         addMusicToProg(prog);
@@ -340,7 +340,7 @@ public class MusicApp extends JFrame {
 
     //MODIFIES: this
     //EFFECTS: sets the given button and the activeButton
-    private void setActiveButton(Button button) {
+    public void setActiveButton(Button button) {
         if (activeButton != null) {
             activeButton.deactivate();
         }

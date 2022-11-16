@@ -28,7 +28,7 @@ public class NewProgressionButton extends Button {
     // EFFECTS:  associate button with new ClickHandler
     @Override
     protected void addListener() {
-        button.addActionListener(new ShapeToolClickHandler());
+        button.addActionListener(new NewProgressionClickHandler());
     }
 
     // MODIFIES: this
@@ -36,10 +36,7 @@ public class NewProgressionButton extends Button {
     //           added to the editor's drawing
     @Override
     public void mousePressedInDrawingArea(MouseEvent e) {
-        makeShape(e);
-        shape.selectAndPlay();
-        shape.setBounds(e.getPoint());
-        editor.addToDrawing(shape);
+        musicApp.openNewProg();
     }
 
 
@@ -47,15 +44,14 @@ public class NewProgressionButton extends Button {
     // EFFECTS:  unselects this shape, and sets it to null
     @Override
     public void mouseReleasedInDrawingArea(MouseEvent e) {
-        shape.unselectAndStopPlaying();
-        shape = null;
+        //do nothing
     }
 
     // MODIFIES: this
     // EFFECTS:  sets the bounds of thes shape to where the mouse is dragged to
     @Override
     public void mouseDraggedInDrawingArea(MouseEvent e) {
-        shape.setBounds(e.getPoint());
+        //do nothing
     }
 
     //EFFECTS: returns Label for new progression button as string
@@ -65,11 +61,11 @@ public class NewProgressionButton extends Button {
 
     private class NewProgressionClickHandler implements ActionListener {
 
-        // EFFECTS: sets active tool to the shape tool
+        // EFFECTS: sets active tool to the new progression tool
         //          called by the framework when the tool is clicked
         @Override
         public void actionPerformed(ActionEvent e) {
-            musicApp.setActiveTool(ShapeTool.this);
+            musicApp.setActiveButton(NewProgressionButton.this);
         }
     }
 
