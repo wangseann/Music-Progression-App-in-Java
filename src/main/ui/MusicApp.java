@@ -6,8 +6,8 @@ import model.Progression;
 import model.TimeSignatures;
 import persisitance.JsonReader;
 import persisitance.JsonWriter;
-import ui.TextFieldEvent.NewProgressionTextFieldEvent;
-import ui.TextFieldEvent.SavePlaylistTextFieldEvent;
+import ui.events.NewProgressionTextFieldEvent;
+import ui.events.SavePlaylistTextFieldEvent;
 import ui.buttons.*;
 import ui.buttons.Button;
 

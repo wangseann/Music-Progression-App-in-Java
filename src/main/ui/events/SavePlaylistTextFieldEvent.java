@@ -1,4 +1,4 @@
-package ui.TextFieldEvent;
+package ui.events;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
