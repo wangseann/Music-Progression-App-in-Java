@@ -67,11 +67,37 @@ public class MusicApp extends JFrame {
     private void initializeGraphics() {
         setLayout(new BorderLayout());
         setSize(new Dimension(WIDTH, HEIGHT));
+        displayProgressions();
         createButtons();
         initializeKeyboard();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+
+    //MODIFIES: this
+    //EFFECTS: displays progression details in GUI
+    private void displayProgressions() {
+        JPanel displayField = new JPanel();
+        displayField.setLayout(new BoxLayout(displayField, BoxLayout.PAGE_AXIS));
+        JLabel displayFieldName = new JLabel("Current Progressions:");
+        displayField.add(displayFieldName);
+
+        if (playlist == null) {
+            // display nothing
+        } else {
+            for (Progression p : playlist.listOfProgs()) {
+                JLabel progressionName = new JLabel(p.getName());
+                displayField.add(progressionName);
+                JLabel progressionKey = new JLabel(p.getKey());
+                displayField.add(progressionKey);
+                JLabel progressionTempo = new JLabel(Integer.toString(p.getTempo()));
+                displayField.add(progressionTempo);
+            }
+        }
+
+        displayField.setVisible(true);
+        add(displayField);
     }
 
     //MODIFIES: this
@@ -159,7 +185,6 @@ public class MusicApp extends JFrame {
     //MODIFIES: playlist
     //EFFECTS: read playlist from file and set as current playlist
     public void openSavedPlaylists() {
-        System.out.println("\nSaved Playlists...");
         File file = new File("./data/savedPlaylists.json");
         if (file.length() == 0) {
             //return to main menu
@@ -167,9 +192,7 @@ public class MusicApp extends JFrame {
             try {
                 JsonReader reader = new JsonReader("./data/savedPlaylists.json");
                 playlist = reader.read();
-                System.out.println(playlist.getName());
-                System.out.println(playlist.getDate());
-                printListOfProgs(playlist);
+                displayProgressions();
             } catch (IOException e) {
                 System.out.println("\nIO Exception");
             }
@@ -250,7 +273,7 @@ public class MusicApp extends JFrame {
             TimeSignatures ts = handleTimeSignature(timeSignatureInt);
             prog.setTimeSignature(ts);
         }
-        printProgReceipt(prog);
+        displayProgressions();
     }
 
     //MODIFIES: playlist
