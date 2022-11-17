@@ -13,9 +13,10 @@ public class TextFieldEvent {
 
 
     //EFFECTS: constructs a TextField
-    public TextFieldEvent() {
+    public TextFieldEvent(String s) {
         panel.add(textField);
         panel.add(button);
+        textField.setText(s);
 
         //EFFECTS: close textfield frame on "ok" button press
         button.addActionListener(e -> {

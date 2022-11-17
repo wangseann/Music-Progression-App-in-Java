@@ -36,7 +36,7 @@ public class NewProgressionButton extends Button {
     //           added to the editor's drawing
     @Override
     public void mousePressedInDrawingArea(MouseEvent e) {
-        musicApp.openNewProg();
+        //do nothing
     }
 
 
@@ -66,7 +66,7 @@ public class NewProgressionButton extends Button {
         @Override
         public void actionPerformed(ActionEvent e) {
             musicApp.setActiveButton(NewProgressionButton.this);
+            musicApp.openNewProg();
         }
     }
-
 }

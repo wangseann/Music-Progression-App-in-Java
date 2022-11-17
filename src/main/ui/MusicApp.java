@@ -31,7 +31,6 @@ public class MusicApp extends JFrame {
 
     private List<Button> buttons;
     private Button activeButton;
-    private Playlist currentPlaylist;
     private Progression currentProgression;
 
     //dont need?
@@ -119,7 +118,7 @@ public class MusicApp extends JFrame {
 
     //MODIFIES: playlist
     //EFFECTS:prompt user to save progessions in playlist
-    private void promptToSave() {
+    public void promptToSave() {
         System.out.println("\nDo you wish to save progressions in current playlist to file? y/n");
 
         if (input.next().equals("y")) {
@@ -136,8 +135,13 @@ public class MusicApp extends JFrame {
         }
     }
 
+    //EFFECTS: returns this music app's current playlist
+    public Playlist getPlaylist() {
+        return playlist;
+    }
+
     //EFFECTS: save progressions in given playlist to file
-    private void saveProgInPlaylist(Playlist playlist) {
+    public void saveProgInPlaylist(Playlist playlist) {
         try {
             JsonWriter writer = new JsonWriter("./data/savedPlaylists.json");
             writer.open();
@@ -150,7 +154,7 @@ public class MusicApp extends JFrame {
 
     //MODIFIES: playlist
     //EFFECTS: read playlist from file and set as current playlist
-    private void openSavedPlaylists() {
+    public void openSavedPlaylists() {
         System.out.println("\nSaved Playlists...");
         File file = new File("./data/savedPlaylists.json");
         if (file.length() == 0) {
@@ -194,7 +198,6 @@ public class MusicApp extends JFrame {
     //MODIFIES: playlist
     //EFFECTS: return new display for creating new progressions
     public void openNewProg() {
-        new TextFieldEvent();
         Progression prog = new Progression("","",0,FOUR_FOUR);
         handleNewProgSetup(prog);
         addMusicToProg(prog);
@@ -212,11 +215,11 @@ public class MusicApp extends JFrame {
         int tempo;
         TimeSignatures ts;
 
-        new TextFieldEvent();
+        new TextFieldEvent("\nType Progression Name: eg. Blackbird");
         name = input.next();
         prog.setName(name);
 
-        System.out.println("\nType Progression Key: eg. C");
+        new TextFieldEvent("\nType Progression Key: eg. C");
         key = input.next();
         prog.setKey(key);
 
@@ -233,7 +236,7 @@ public class MusicApp extends JFrame {
 
     //MODIFIES: playlist
     //EFFECTS: handle old progressions page
-    private void openOldProg() {
+    public void openOldProg() {
         Progression selectedProg;
         System.out.println("Old Progressions:");
         printListOfProgs(playlist);
