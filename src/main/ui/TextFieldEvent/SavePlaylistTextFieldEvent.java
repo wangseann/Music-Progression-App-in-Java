@@ -1,22 +1,27 @@
 package ui.TextFieldEvent;
 
 import javax.swing.*;
-import java.awt.event.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
-public class TextFieldEvent {
-
-
+public class SavePlaylistTextFieldEvent {
     JFrame frame = new JFrame();
     JPanel panel = new JPanel();
-    JTextField textField = new JTextField();
+    JLabel nameLabel = new JLabel("Type Playlist Name: eg. Playlist 1");
+    JLabel dateLabel = new JLabel("Type Playlist Date: eg. March 1, 2022");
+    JTextField textFieldName = new JTextField("untitled playlist");
+    JTextField textFieldDate = new JTextField("March 1, 2022");
     JButton button = new JButton("Ok");
 
 
     //EFFECTS: constructs a TextField
-    public TextFieldEvent(String s) {
-        panel.add(textField);
+    public SavePlaylistTextFieldEvent() {
+        panel.add(nameLabel);
+        panel.add(textFieldName);
+        panel.add(dateLabel);
+        panel.add(textFieldDate);
         panel.add(button);
-        textField.setText(s);
+
 
         //EFFECTS: close textfield frame on "ok" button press
         button.addActionListener(e -> {
@@ -28,7 +33,7 @@ public class TextFieldEvent {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        textField.addKeyListener(new KeyAdapter() {
+        textFieldName.addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent e) {
                 JTextField textField = (JTextField) e.getSource();
                 String text = textField.getText();
@@ -36,16 +41,13 @@ public class TextFieldEvent {
             }
         });
     }
+
+    //Getters
+    public String getTextFieldName() {
+        return textFieldName.getText();
+    }
+
+    public String getTextFieldDate() {
+        return textFieldDate.getText();
+    }
 }
-
-//    textField.addFocusListener(new FocusListener) {
-//        public void focusGained(FocusEvent arg0) {
-//            textField.setText("");
-//        }
-//
-//        public void focusLost(FocusEvent arg1) {
-//            textField.setText("Please Enter Some Text");
-//        }
-//
-//    }
-

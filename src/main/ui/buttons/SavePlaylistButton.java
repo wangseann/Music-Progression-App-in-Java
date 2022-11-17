@@ -69,7 +69,7 @@ public class SavePlaylistButton extends Button {
         @Override
         public void actionPerformed(ActionEvent e) {
             musicApp.setActiveButton(SavePlaylistButton.this);
-            musicApp.saveProgInPlaylist(musicApp.getPlaylist());
+            musicApp.promptToSave();
         }
     }
 }

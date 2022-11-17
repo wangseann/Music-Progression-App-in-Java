@@ -66,6 +66,7 @@ public class QuitButton extends Button {
         public void actionPerformed(ActionEvent e) {
             musicApp.setActiveButton(QuitButton.this);
             musicApp.promptToSave();
+
         }
     }
 }

@@ -6,7 +6,8 @@ import model.Progression;
 import model.TimeSignatures;
 import persisitance.JsonReader;
 import persisitance.JsonWriter;
-import ui.TextFieldEvent.TextFieldEvent;
+import ui.TextFieldEvent.NewProgressionTextFieldEvent;
+import ui.TextFieldEvent.SavePlaylistTextFieldEvent;
 import ui.buttons.*;
 import ui.buttons.Button;
 
@@ -33,7 +34,6 @@ public class MusicApp extends JFrame {
     private Button activeButton;
     private Progression currentProgression;
 
-    //dont need?
     private Scanner input;
     private Playlist playlist = new Playlist();
 
@@ -66,11 +66,24 @@ public class MusicApp extends JFrame {
     //EFFECTS: draws JFrame window where MusicMouseListener will function to manipulate music app frame
     private void initializeGraphics() {
         setLayout(new BorderLayout());
-        setMaximumSize(new Dimension(WIDTH, HEIGHT));
+        setSize(new Dimension(WIDTH, HEIGHT));
         createButtons();
+        initializeKeyboard();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+
+    //MODIFIES: this
+    //EFFECTS: adds keyboard image to initial frame
+    private void initializeKeyboard() {
+        try {
+            ImageIcon image = new ImageIcon("src/images/pianokeyboard.jpeg");
+            JLabel displayField = new JLabel(image);
+            add(displayField);
+        } catch (Exception e) {
+            System.out.println("image cannot be found");
+        }
     }
 
     //MODIFIES: this
@@ -119,20 +132,11 @@ public class MusicApp extends JFrame {
     //MODIFIES: playlist
     //EFFECTS:prompt user to save progessions in playlist
     public void promptToSave() {
-        System.out.println("\nDo you wish to save progressions in current playlist to file? y/n");
+        SavePlaylistTextFieldEvent savePlaylistTextFieldEvent = new SavePlaylistTextFieldEvent();
+        playlist.setName(savePlaylistTextFieldEvent.getTextFieldName());
+        playlist.setDate(savePlaylistTextFieldEvent.getTextFieldDate());
 
-        if (input.next().equals("y")) {
-            System.out.println("\nEnter Playlist Name:");
-            playlist.setName(input.next());
-            System.out.println("\nEnter Playlist Date:");
-            playlist.setDate(input.next());
-            saveProgInPlaylist(playlist);
-        } else if (input.nextLine().equals("n")) {
-            System.out.println("Are you sure? y/n");
-            if (input.nextLine().equals("n")) {
-                saveProgInPlaylist(playlist);
-            }
-        }
+        saveProgInPlaylist(playlist);
     }
 
     //EFFECTS: returns this music app's current playlist
@@ -200,7 +204,7 @@ public class MusicApp extends JFrame {
     public void openNewProg() {
         Progression prog = new Progression("","",0,FOUR_FOUR);
         handleNewProgSetup(prog);
-        addMusicToProg(prog);
+        //addMusicToProg(prog);
         printProgReceipt(prog);
         playlist.addProgression(prog);
 
@@ -210,28 +214,43 @@ public class MusicApp extends JFrame {
     //MODIFIES: this
     //EFFECTS: set up of new progression to user specifications
     private void handleNewProgSetup(Progression prog) {
-        String name;
-        String key;
-        int tempo;
-        TimeSignatures ts;
+        NewProgressionTextFieldEvent newProgressionTextFieldEvent = new NewProgressionTextFieldEvent();
+        String name = newProgressionTextFieldEvent.getTextFieldName();
+        String key = newProgressionTextFieldEvent.getTextFieldKey();
+        int tempo = 0;
+        int timeSignatureInt = 0;
+        String tempoString = newProgressionTextFieldEvent.getTextFieldTempo();
+        if (tempoString.equals("")) {
+            tempoString = "1";
+        }
 
-        new TextFieldEvent("\nType Progression Name: eg. Blackbird");
-        name = input.next();
+        String timeSignatureString = newProgressionTextFieldEvent.getTextFieldTimeSignature();
+        if (timeSignatureString.equals("")) {
+            timeSignatureString = "1";
+        }
+
         prog.setName(name);
-
-        new TextFieldEvent("\nType Progression Key: eg. C");
-        key = input.next();
         prog.setKey(key);
 
-        System.out.println("\nType Tempo: eg. 200");
-        tempo = Integer.parseInt(input.next());
-        prog.setTempo(tempo);
+        try {
+            tempo = Integer.parseInt(tempoString);
+        } catch (NumberFormatException e) {
+            tempoString = "1";
+        } finally {
+            prog.setTempo(tempo);
+        }
 
-        System.out.println("\nSelect One Time Signature: 4/4(1) 3/4(2) 7/4(3)");
-        int i = Integer.parseInt(input.next());
-        ts = handleTimeSignature(i);
-        prog.setTimeSignature(ts);
 
+
+        try {
+            timeSignatureInt = Integer.parseInt(timeSignatureString);
+        } catch (NumberFormatException e) {
+            timeSignatureString = "1";
+        } finally {
+            TimeSignatures ts = handleTimeSignature(timeSignatureInt);
+            prog.setTimeSignature(ts);
+        }
+        printProgReceipt(prog);
     }
 
     //MODIFIES: playlist
@@ -355,27 +374,27 @@ public class MusicApp extends JFrame {
 
         // EFFECTS: Forward mouse pressed event to the active tool
         public void mousePressed(MouseEvent e) {
-            handleMousePressed(translateEvent(e));
+            //handleMousePressed(translateEvent(e));
         }
 
         // EFFECTS: Forward mouse released event to the active tool
         public void mouseReleased(MouseEvent e) {
-            handleMouseReleased(translateEvent(e));
+            //handleMouseReleased(translateEvent(e));
         }
 
         // EFFECTS:Forward mouse clicked event to the active tool
         public void mouseClicked(MouseEvent e) {
-            handleMouseClicked(translateEvent(e));
+            //handleMouseClicked(translateEvent(e));
         }
 
         // EFFECTS:Forward mouse dragged event to the active tool
         public void mouseDragged(MouseEvent e) {
-            handleMouseDragged(translateEvent(e));
+            //handleMouseDragged(translateEvent(e));
         }
 
         // EFFECTS: translates the mouse event to current drawing's coordinate system
-        private MouseEvent translateEvent(MouseEvent e) {
-            return SwingUtilities.convertMouseEvent(e.getComponent(), e, currentProgression);
+        private void translateEvent(MouseEvent e) {
+//            return SwingUtilities.convertMouseEvent(e.getComponent(), e, currentProgression);
         }
     }
 

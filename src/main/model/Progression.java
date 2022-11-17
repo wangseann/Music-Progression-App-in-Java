@@ -5,7 +5,7 @@ import persisitance.Writable;
 
 import javax.swing.*;
 
-public class Progression extends JPanel implements Writable {
+public class Progression implements Writable {
     String name = "";
     String notes = "";
     String key = "";
