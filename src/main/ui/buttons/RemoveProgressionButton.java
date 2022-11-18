@@ -8,11 +8,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
-public class QuitButton extends Button {
+public class RemoveProgressionButton extends Button {
+    protected Progression progression;
 
-
-    public QuitButton(MusicApp musicApp, JComponent parent) {
+    public RemoveProgressionButton(MusicApp musicApp, JComponent parent) {
         super(musicApp, parent);
+        progression = null;
     }
 
     // MODIFIES: this
@@ -27,7 +28,7 @@ public class QuitButton extends Button {
     // EFFECTS:  associate button with new ClickHandler
     @Override
     protected void addListener() {
-        button.addActionListener(new QuitButton.QuitClickHandler());
+        button.addActionListener(new RemoveProgressionButton.RemoveProgressionClickHandler());
     }
 
     // MODIFIES: this
@@ -35,7 +36,7 @@ public class QuitButton extends Button {
     //           added to the editor's drawing
     @Override
     public void mousePressedInDrawingArea(MouseEvent e) {
-        // do nothing
+        //do nothing
     }
 
 
@@ -55,18 +56,17 @@ public class QuitButton extends Button {
 
     //EFFECTS: returns Label for new progression button as string
     public String getLabel() {
-        return "Quit";
+        return "Remove Progression";
     }
 
-    private class QuitClickHandler implements ActionListener {
+    private class RemoveProgressionClickHandler implements ActionListener {
 
         // EFFECTS: sets active tool to the new progression tool
         //          called by the framework when the tool is clicked
         @Override
         public void actionPerformed(ActionEvent e) {
-            musicApp.setActiveButton(QuitButton.this);
-            musicApp.setVisible(false);
-            musicApp.dispose();
+            musicApp.setActiveButton(RemoveProgressionButton.this);
+            musicApp.handleRemoveProgression();
         }
     }
 }

@@ -7,12 +7,15 @@ import model.TimeSignatures;
 import persisitance.JsonReader;
 import persisitance.JsonWriter;
 import ui.events.NewProgressionTextFieldEvent;
+import ui.events.RemoveProgressionTextFieldEvent;
 import ui.events.SavePlaylistTextFieldEvent;
 import ui.buttons.*;
 import ui.buttons.Button;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -87,12 +90,8 @@ public class MusicApp extends JFrame {
             // display nothing
         } else {
             for (Progression p : playlist.listOfProgs()) {
-                JLabel progressionName = new JLabel(p.getName());
-                displayField.add(progressionName);
-                JLabel progressionKey = new JLabel(p.getKey());
-                displayField.add(progressionKey);
-                JLabel progressionTempo = new JLabel(Integer.toString(p.getTempo()));
-                displayField.add(progressionTempo);
+                JLabel progression = new JLabel(p.getName() + " " + p.getKey() + " " + p.getTempo());
+                displayField.add(progression);
             }
         }
 
@@ -237,42 +236,8 @@ public class MusicApp extends JFrame {
     //MODIFIES: this
     //EFFECTS: set up of new progression to user specifications
     private void handleNewProgSetup(Progression prog) {
-        NewProgressionTextFieldEvent newProgressionTextFieldEvent = new NewProgressionTextFieldEvent();
-        String name = newProgressionTextFieldEvent.getTextFieldName();
-        String key = newProgressionTextFieldEvent.getTextFieldKey();
-        int tempo = 0;
-        int timeSignatureInt = 0;
-        String tempoString = newProgressionTextFieldEvent.getTextFieldTempo();
-        if (tempoString.equals("")) {
-            tempoString = "1";
-        }
-
-        String timeSignatureString = newProgressionTextFieldEvent.getTextFieldTimeSignature();
-        if (timeSignatureString.equals("")) {
-            timeSignatureString = "1";
-        }
-
-        prog.setName(name);
-        prog.setKey(key);
-
-        try {
-            tempo = Integer.parseInt(tempoString);
-        } catch (NumberFormatException e) {
-            tempoString = "1";
-        } finally {
-            prog.setTempo(tempo);
-        }
-
-
-
-        try {
-            timeSignatureInt = Integer.parseInt(timeSignatureString);
-        } catch (NumberFormatException e) {
-            timeSignatureString = "1";
-        } finally {
-            TimeSignatures ts = handleTimeSignature(timeSignatureInt);
-            prog.setTimeSignature(ts);
-        }
+        //open popup
+        NewProgressionTextFieldEvent newProgressionTextFieldEvent = new NewProgressionTextFieldEvent(prog);
         displayProgressions();
     }
 
@@ -330,21 +295,21 @@ public class MusicApp extends JFrame {
         System.out.println("\tNotes/Chords:" + p.getNotes());
     }
 
-    //REQUIRES: int ts given is either 1,2, or 3
-    //EFFECTS: returns time signature specified by user
-    private TimeSignatures handleTimeSignature(int ts) {
-        if (ts == 1) {
-            return FOUR_FOUR;
-        } else if (ts == 2) {
-            return THREE_FOUR;
-        } else if (ts == 3) {
-            return SEVEN_FOUR;
-        } else {
-            System.out.println("\nPlease choose one by entering the digit: 4/4(1) 3/4(2) 7/4(3)");
-            handleTimeSignature(Integer.parseInt(input.next()));
-            return null;
-        }
-    }
+//    //REQUIRES: int ts given is either 1,2, or 3
+//    //EFFECTS: returns time signature specified by user
+//    private TimeSignatures handleTimeSignature(int ts) {
+//        if (ts == 1) {
+//            return FOUR_FOUR;
+//        } else if (ts == 2) {
+//            return THREE_FOUR;
+//        } else if (ts == 3) {
+//            return SEVEN_FOUR;
+//        } else {
+//            System.out.println("\nPlease choose one by entering the digit: 4/4(1) 3/4(2) 7/4(3)");
+//            handleTimeSignature(Integer.parseInt(input.next()));
+//            return null;
+//        }
+//    }
 
 
     //EFFECTS: prints list of progessions in playlist
@@ -368,17 +333,17 @@ public class MusicApp extends JFrame {
         Button newProgressionButton = new NewProgressionButton(this, buttonArea);
         buttons.add(newProgressionButton);
 
-        Button openProgressionButton = new OpenProgressionButton(this, buttonArea);
-        buttons.add(openProgressionButton);
-
-        Button quitButton = new QuitButton(this, buttonArea);
-        buttons.add(quitButton);
+        Button removeProgressionButton = new RemoveProgressionButton(this, buttonArea);
+        buttons.add(removeProgressionButton);
 
         Button savedProgressionsButton = new SavedProgressionsButton(this, buttonArea);
         buttons.add(savedProgressionsButton);
 
         Button savePlaylistButton = new SavePlaylistButton(this, buttonArea);
         buttons.add(savePlaylistButton);
+
+        Button quitButton = new QuitButton(this, buttonArea);
+        buttons.add(quitButton);
 
         setActiveButton(newProgressionButton);  //? do i need active button?
     }
@@ -392,6 +357,14 @@ public class MusicApp extends JFrame {
         button.activate();
         activeButton = button;
     }
+
+    //MODIFIES: this
+    //EFFECTS: handles the removing of a progression from the current playlist
+    public void handleRemoveProgression() {
+        RemoveProgressionTextFieldEvent removeProgressionTextFieldEvent = new RemoveProgressionTextFieldEvent(playlist);
+        displayProgressions();
+    }
+
 
     private class MusicMouseListener extends MouseAdapter {
 
