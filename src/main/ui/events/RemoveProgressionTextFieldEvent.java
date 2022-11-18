@@ -21,8 +21,6 @@ public class RemoveProgressionTextFieldEvent {
         panel.add(textField);
         panel.add(button);
 
-
-
         //EFFECTS: close textfield frame on "ok" button press
         button.addActionListener(e -> {
             playlist.removeProgression(this.getTextField());
