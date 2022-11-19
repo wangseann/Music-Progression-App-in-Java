@@ -1,20 +1,5 @@
 {
     "date": "March 1, 2022",
-    "progressions": [
-        {
-            "time signature": "SEVEN_FOUR",
-            "notes": "",
-            "progression name": "Me",
-            "tempo": 200,
-            "key": "D"
-        },
-        {
-            "time signature": "FOUR_FOUR",
-            "notes": "",
-            "progression name": "Him",
-            "tempo": 300,
-            "key": "D"
-        }
-    ],
+    "progressions": [],
     "name": "untitled playlist"
 }

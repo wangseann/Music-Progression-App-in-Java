@@ -34,9 +34,10 @@ ability to play faster, longer phrasing, outlining progressions better*.
 # Instructions for Grader
 
 - You can generate the first required event related to adding Xs to a Y by pressing new progression and follow prompts to set fields.
-- You can generate the second required event related to adding Xs to a Y by pressing open progression and follow prompts to modify/remove/view existing progressions. 
-- You can locate my visual component by...
-- You can save the state of my application by pressing Q and Y when prompted to save current playlist. 
+- You can generate the second required event related to adding Xs to a Y by pressing the 
+  remove progression button and following prompts to remove an existing progression from the current playlist. 
+- You can locate my visual component by starting from main (keyboard image in the middle of the frame).
+- You can save the state of my application by pressing the save playlist button and following prompts. 
 - You can reload the state of my application by pressing saved progressions when opening the application. 
 
 

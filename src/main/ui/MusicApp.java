@@ -40,15 +40,7 @@ public class MusicApp extends JFrame {
     private Scanner input;
     private Playlist playlist = new Playlist();
 
-//    //EFFECTS: runs the music application
-//    public MusicApp() {
-//        try {
-//            runMusicApp();
-//        } catch (IOException e) {
-//            System.out.println("Exception Found");
-//        }
-//    }
-//
+
     //EFFECTS: runs the music application
     public MusicApp() {
         super("Music Application");
@@ -121,38 +113,6 @@ public class MusicApp extends JFrame {
     }
 
 
-    //MODIFIES: this
-    //EFFECTS: processes user input
-    private void runMusicApp() throws IOException {
-        boolean keepGoing = true;
-        String command = null;
-
-        init();
-
-        while (keepGoing) {
-            //displayMenu();
-
-            command = input.next();
-            command = command.toLowerCase();
-
-            if (command.equals("q")) {
-                promptToSave();
-                keepGoing = false;
-            } else if (command.equals("n")) {
-                openNewProg();
-            } else if (command.equals("o")) {
-                if (playlist.size() == 0) {
-                    //return to main menu
-                } else {
-                    openOldProg();
-                }
-            } else if (command.equals("s")) {
-                openSavedPlaylists();
-            } else {
-                processCommand(command);
-            }
-        }
-    }
 
     //MODIFIES: playlist
     //EFFECTS:prompt user to save progessions in playlist
@@ -198,28 +158,6 @@ public class MusicApp extends JFrame {
         }
     }
 
-    //MODIFIES: this
-    //EFFECTS: processes user command
-    //used later for midi keyboard
-    private void processCommand(String command) {
-        System.out.println("invalid input try again");
-    }
-
-    //MODIFIES: this
-    //EFFECTS: initializes application
-    private void init() {
-        input = new Scanner(System.in);
-        input.useDelimiter("\n");
-    }
-
-//    //EFFECTS: produces menu of options
-//    private void displayMenu() {
-//        System.out.println("\nSelect from:");
-//        System.out.println("\tn -> new progression");
-//        System.out.println("\to -> open progression");
-//        System.out.println("\ts -> open saved playlist");
-//        System.out.println("\tq -> quit");
-//    }
 
     //MODIFIES: playlist
     //EFFECTS: return new display for creating new progressions
@@ -294,22 +232,6 @@ public class MusicApp extends JFrame {
         System.out.println("\tTime Signature:" + p.getTimeSignature());
         System.out.println("\tNotes/Chords:" + p.getNotes());
     }
-
-//    //REQUIRES: int ts given is either 1,2, or 3
-//    //EFFECTS: returns time signature specified by user
-//    private TimeSignatures handleTimeSignature(int ts) {
-//        if (ts == 1) {
-//            return FOUR_FOUR;
-//        } else if (ts == 2) {
-//            return THREE_FOUR;
-//        } else if (ts == 3) {
-//            return SEVEN_FOUR;
-//        } else {
-//            System.out.println("\nPlease choose one by entering the digit: 4/4(1) 3/4(2) 7/4(3)");
-//            handleTimeSignature(Integer.parseInt(input.next()));
-//            return null;
-//        }
-//    }
 
 
     //EFFECTS: prints list of progessions in playlist
