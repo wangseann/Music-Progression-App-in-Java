@@ -20,6 +20,7 @@ public class Playlist implements Writable {
     //EFFECT: add progression to playlist
     public void addProgression(Progression p) {
         this.playlist.add(p);
+        EventLog.getInstance().logEvent(new Event("Progression " + p.getName() + " added to Playlist"));
     }
 
     //MODIFIES: this
@@ -28,6 +29,7 @@ public class Playlist implements Writable {
         for (int i = 0; i < playlist.size(); i++) {
             if (this.playlist.get(i).getName().equals(name)) {
                 this.playlist.remove(i);
+                EventLog.getInstance().logEvent(new Event("Progression " + name + " removed from Playlist"));
             }
         }
     }
@@ -46,6 +48,7 @@ public class Playlist implements Writable {
             return null;
         }
 
+        EventLog.getInstance().logEvent(new Event("Progression " + defaultProg.getName() + " returned from Playlist"));
         return defaultProg;
     }
 
@@ -69,6 +72,7 @@ public class Playlist implements Writable {
     //EFFECTS: sets playlist date as given date
     public void setDate(String date) {
         this.date = date;
+        EventLog.getInstance().logEvent(new Event("Playlist " + this.getName() + " has date set to" + date));
     }
 
     //EFFECTS: returns playlist date as string
@@ -79,6 +83,7 @@ public class Playlist implements Writable {
     //EFFECTS: sets playlist name as given name
     public void setName(String name) {
         this.name = name;
+        EventLog.getInstance().logEvent(new Event("Playlist name set to" + name));
     }
 
     //EFFECTS: returns playlist name as string
