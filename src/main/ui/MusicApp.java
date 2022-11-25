@@ -161,20 +161,18 @@ public class MusicApp extends JFrame {
     //MODIFIES: playlist
     //EFFECTS: return new display for creating new progressions
     public void openNewProg() {
-        Progression prog = new Progression("","",0,FOUR_FOUR);
-        handleNewProgSetup(prog);
+
+        handleNewProgSetup(playlist);
         //addMusicToProg(prog);
-        printProgReceipt(prog);
-        playlist.addProgression(prog);
 
         System.out.println("\nReturning to main Menu");
     }
 
     //MODIFIES: this
     //EFFECTS: set up of new progression to user specifications
-    private void handleNewProgSetup(Progression prog) {
+    private void handleNewProgSetup(Playlist playlist) {
         //open popup
-        NewProgressionTextFieldEvent newProgressionTextFieldEvent = new NewProgressionTextFieldEvent(prog);
+        NewProgressionTextFieldEvent newProgressionTextFieldEvent = new NewProgressionTextFieldEvent(playlist);
         displayProgressions();
     }
 
@@ -196,7 +194,7 @@ public class MusicApp extends JFrame {
         System.out.println("Select Modify(M) Remove(R) or View(V):");
 
         if (input.next().equals("M")) {
-            handleNewProgSetup(selectedProg);
+            //handleNewProgSetup(selectedProg);
         } else if (input.nextLine().equals("V")) {
             printProgReceipt(selectedProg);
         } else if (input.nextLine().equals("R")) {

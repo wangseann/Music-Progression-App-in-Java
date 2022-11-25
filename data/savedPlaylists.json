@@ -1,27 +1,11 @@
 {
     "date": "March 1, 2022",
-    "progressions": [
-        {
-            "time signature": "FOUR_FOUR",
-            "notes": "",
-            "progression name": "SongA",
-            "tempo": 200,
-            "key": "C"
-        },
-        {
-            "time signature": "THREE_FOUR",
-            "notes": "",
-            "progression name": "SongB",
-            "tempo": 200,
-            "key": "D"
-        },
-        {
-            "time signature": "SEVEN_FOUR",
-            "notes": "",
-            "progression name": "SongC",
-            "tempo": 121,
-            "key": "D"
-        }
-    ],
+    "progressions": [{
+        "time signature": "FOUR_FOUR",
+        "notes": "",
+        "progression name": "SongC",
+        "tempo": 200,
+        "key": "D"
+    }],
     "name": "untitled playlist"
 }

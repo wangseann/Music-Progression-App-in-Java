@@ -1,5 +1,6 @@
 package ui.events;
 
+import model.Playlist;
 import model.Progression;
 import model.TimeSignatures;
 
@@ -24,7 +25,7 @@ public class NewProgressionTextFieldEvent {
 
 
     //EFFECTS: constructs a TextField
-    public NewProgressionTextFieldEvent(Progression prog) {
+    public NewProgressionTextFieldEvent(Playlist playlist) {
         JPanel panel = new JPanel();
         addComponenetsToPanel(panel);
 
@@ -37,7 +38,7 @@ public class NewProgressionTextFieldEvent {
 
         //close textfield frame and update prog values on "ok" button press
         button.addActionListener(e -> {
-            setProgValues(prog);
+            setProgValues(playlist);
             frame.setVisible(false); //you can't see me!
             frame.dispose(); //Destroy the JFrame object
         });
@@ -83,59 +84,56 @@ public class NewProgressionTextFieldEvent {
 
     //MODIFIES: prog
     //EFFECTS: set progression values to values in TextField
-    public void setProgValues(Progression prog) {
+    public void setProgValues(Playlist playlist) {
         //read local variable values from TextFieldEvent
         String name = this.getTextFieldName();
         String key = this.getTextFieldKey();
 
-        //Set progression name and key
-        prog.setName(name);
-        prog.setKey(key);
 
         //set default values for tempo and time signature
-        handleProgTimeSig(prog);
-        handleProgTempo(prog);
+        playlist.addProgression(
+                new Progression(name, key,
+                        handleProgTempo(this.getTextFieldTempo()),
+                        handleProgTimeSig(this.getTextFieldTimeSignature())));
     }
 
     //MODIFIES: this
-    //EFFECTS: sets progression time signature
-    private void handleProgTimeSig(Progression prog) {
+    //EFFECTS: returns TimeSignature based on given string
+    private TimeSignatures handleProgTimeSig(String tsAsString) {
         int timeSignatureInt = 0;
 
         //set TimeSignature string as string in textfield or "1" as default
-        String timeSignatureString = this.getTextFieldTimeSignature();
-        if (timeSignatureString.equals("")) {
-            timeSignatureString = "1";
+        if (tsAsString.equals("")) {
+            tsAsString = "1";
         }
 
         //set prog time sig
         try {
-            timeSignatureInt = Integer.parseInt(timeSignatureString);
+            timeSignatureInt = Integer.parseInt(tsAsString);
         } catch (NumberFormatException e) {
-            timeSignatureString = "1";
+            tsAsString = "1";
         } finally {
             TimeSignatures ts = handleTimeSignature(timeSignatureInt);
-            prog.setTimeSignature(ts);
+            return ts;
         }
     }
 
     //MODIFIES: this
     //EFFECTS: sets progressions tempo
-    private void handleProgTempo(Progression prog) {
+    private int handleProgTempo(String tempoAsString) {
         int tempo = 0;
 
         //set tempo string as string in textfield or "1" as default
-        String tempoString = this.getTextFieldTempo();
-        if (tempoString.equals("")) {
-            tempoString = "1";
+        if (tempoAsString.equals("")) {
+            tempoAsString = "1";
         }
         //Set prog tempo
         try {
-            tempo = Integer.parseInt(tempoString);
+            tempo = Integer.parseInt(tempoAsString);
         } catch (NumberFormatException e) {
-            tempoString = "1";
+            tempoAsString = "1";
         } finally {
-            prog.setTempo(tempo);
+            return tempo;
         }
     }
 
