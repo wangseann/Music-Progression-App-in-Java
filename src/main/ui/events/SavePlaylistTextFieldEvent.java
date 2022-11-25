@@ -1,5 +1,8 @@
 package ui.events;
 
+import model.Event;
+import model.EventLog;
+
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

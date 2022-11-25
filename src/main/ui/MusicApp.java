@@ -1,9 +1,10 @@
 package ui;
 
 
+import model.Event;
+import model.EventLog;
 import model.Playlist;
 import model.Progression;
-import model.TimeSignatures;
 import persisitance.JsonReader;
 import persisitance.JsonWriter;
 import ui.events.NewProgressionTextFieldEvent;
@@ -14,8 +15,6 @@ import ui.buttons.Button;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -285,6 +284,13 @@ public class MusicApp extends JFrame {
     public void handleRemoveProgression() {
         RemoveProgressionTextFieldEvent removeProgressionTextFieldEvent = new RemoveProgressionTextFieldEvent(playlist);
         displayProgressions();
+    }
+
+    //EFFECTS: prints events in event log to console
+    public void printEventLog(EventLog el) {
+        for (Event next : el) {
+            System.out.println(next.toString() + "\n\n");
+        }
     }
 
 

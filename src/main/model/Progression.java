@@ -24,17 +24,17 @@ public class Progression implements Writable {
     //Setters:
     public void setName(String name) {
         this.name = name;
-        EventLog.getInstance().logEvent(new Event("Progression " + this.getName() + " has name set to" + name));
+        EventLog.getInstance().logEvent(new Event("Set progression name set to " + name));
     }
 
     public void setKey(String key) {
         this.key = key;
-        EventLog.getInstance().logEvent(new Event("Progression " + this.getName() + " has key set to" + key));
+        EventLog.getInstance().logEvent(new Event("Progression " + this.getName() + " has key set to " + key));
     }
 
     public void setTempo(int tempo) {
         this.tempo = tempo;
-        EventLog.getInstance().logEvent(new Event("Progression " + this.getName() + " has tempo set to" + tempo));
+        EventLog.getInstance().logEvent(new Event("Progression " + this.getName() + " has tempo set to " + tempo));
     }
 
     public void setNotes(String notes) {
@@ -45,7 +45,7 @@ public class Progression implements Writable {
 
     public void setTimeSignature(TimeSignatures t) {
         this.timeSignature = t;
-        EventLog.getInstance().logEvent(new Event("Progression " + this.getName() + " has set time signature to" + t));
+        EventLog.getInstance().logEvent(new Event("Progression " + this.getName() + " has set time signature to " + t));
     }
 
     //Getters:

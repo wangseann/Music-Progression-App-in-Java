@@ -72,7 +72,6 @@ public class Playlist implements Writable {
     //EFFECTS: sets playlist date as given date
     public void setDate(String date) {
         this.date = date;
-        EventLog.getInstance().logEvent(new Event("Playlist " + this.getName() + " has date set to" + date));
     }
 
     //EFFECTS: returns playlist date as string
@@ -83,7 +82,6 @@ public class Playlist implements Writable {
     //EFFECTS: sets playlist name as given name
     public void setName(String name) {
         this.name = name;
-        EventLog.getInstance().logEvent(new Event("Playlist name set to" + name));
     }
 
     //EFFECTS: returns playlist name as string

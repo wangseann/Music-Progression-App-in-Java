@@ -1,5 +1,6 @@
 package ui.buttons;
 
+import model.EventLog;
 import model.Progression;
 import ui.MusicApp;
 
@@ -65,6 +66,7 @@ public class QuitButton extends Button {
         @Override
         public void actionPerformed(ActionEvent e) {
             musicApp.setActiveButton(QuitButton.this);
+            musicApp.printEventLog(EventLog.getInstance());
             musicApp.setVisible(false);
             musicApp.dispose();
         }
