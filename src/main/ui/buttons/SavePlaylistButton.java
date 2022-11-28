@@ -11,7 +11,6 @@ import java.awt.event.MouseEvent;
 
 public class SavePlaylistButton extends Button {
 
-
     protected Playlist playlist;
 
     public SavePlaylistButton(MusicApp musicApp, JComponent parent) {

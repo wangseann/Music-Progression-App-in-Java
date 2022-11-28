@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
 public class OpenProgressionButton extends Button {
-    protected Progression progression;
+
 
     public OpenProgressionButton(MusicApp musicApp, JComponent parent) {
         super(musicApp, parent);

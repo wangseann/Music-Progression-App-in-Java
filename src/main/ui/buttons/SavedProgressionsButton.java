@@ -10,9 +10,6 @@ import java.awt.event.MouseEvent;
 
 public class SavedProgressionsButton extends Button {
 
-
-    protected Progression progression;
-
     public SavedProgressionsButton(MusicApp musicApp, JComponent parent) {
         super(musicApp, parent);
         progression = null;

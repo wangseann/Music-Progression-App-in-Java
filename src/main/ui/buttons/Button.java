@@ -1,5 +1,6 @@
 package ui.buttons;
 
+import model.Progression;
 import ui.MusicApp;
 
 import javax.swing.*;
@@ -9,6 +10,7 @@ public abstract class Button {
 
     protected JButton button;
     protected MusicApp musicApp;
+    protected Progression progression;
     private boolean active;
 
 
