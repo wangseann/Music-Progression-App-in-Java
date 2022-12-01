@@ -90,5 +90,10 @@ Progression I'll Be Seeing You added to Playlist
 Process finished with exit code 0
 
 # Phase 4: Task 3
-
+Based on my current UML Design Diagram, the TextFieldEvents are an extra class I created on my own 
+represent a frame that opens on a button click event, and provides text fields that submit their inputs
+to be set as values for progressions or playlists. This extra class introduces "complexity" that could
+have been avoided utilizing other classes from the SWING library, such as instantiating JFrames instead of 
+creating new TextFieldEvent classes. This would reduce the need to create separate classes and would simplify 
+the UML diagram. 
 
