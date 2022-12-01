@@ -1,11 +1,27 @@
 {
     "date": "March 1, 2022",
-    "progressions": [{
-        "time signature": "FOUR_FOUR",
-        "notes": "",
-        "progression name": "My Favourite Things",
-        "tempo": 1,
-        "key": "C"
-    }],
+    "progressions": [
+        {
+            "time signature": "THREE_FOUR",
+            "notes": "",
+            "progression name": "Blackbird",
+            "tempo": 210,
+            "key": "D"
+        },
+        {
+            "time signature": "SEVEN_FOUR",
+            "notes": "",
+            "progression name": "My Favourite Things",
+            "tempo": 120,
+            "key": "D"
+        },
+        {
+            "time signature": "FOUR_FOUR",
+            "notes": "",
+            "progression name": "I'll Be Seeing You",
+            "tempo": 200,
+            "key": "F"
+        }
+    ],
     "name": "untitled playlist"
 }

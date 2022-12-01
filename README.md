@@ -41,3 +41,54 @@ ability to play faster, longer phrasing, outlining progressions better*.
 - You can reload the state of my application by pressing saved progressions when opening the application. 
 
 
+# Phase 4: Task 2
+Thu Dec 01 12:18:09 PST 2022
+Set progression name set to Blackbird
+
+Thu Dec 01 12:18:09 PST 2022
+Progression Blackbird has key set to D
+
+Thu Dec 01 12:18:09 PST 2022
+Progression Blackbird has tempo set to 210
+
+Thu Dec 01 12:18:09 PST 2022
+Progression Blackbird has set time signature to THREE_FOUR
+
+Thu Dec 01 12:18:09 PST 2022
+Progression Blackbird added to Playlist
+
+Thu Dec 01 12:18:24 PST 2022
+Set progression name set to My Favourite Things
+
+Thu Dec 01 12:18:24 PST 2022
+Progression My Favourite Things has key set to D
+
+Thu Dec 01 12:18:24 PST 2022
+Progression My Favourite Things has tempo set to 120
+
+Thu Dec 01 12:18:24 PST 2022
+Progression My Favourite Things has set time signature to SEVEN_FOUR
+
+Thu Dec 01 12:18:24 PST 2022
+Progression My Favourite Things added to Playlist
+
+Thu Dec 01 12:18:45 PST 2022
+Set progression name set to I'll Be Seeing You
+
+Thu Dec 01 12:18:45 PST 2022
+Progression I'll Be Seeing You has key set to F
+
+Thu Dec 01 12:18:45 PST 2022
+Progression I'll Be Seeing You has tempo set to 200
+
+Thu Dec 01 12:18:45 PST 2022
+Progression I'll Be Seeing You has set time signature to FOUR_FOUR
+
+Thu Dec 01 12:18:45 PST 2022
+Progression I'll Be Seeing You added to Playlist
+
+Process finished with exit code 0
+
+# Phase 4: Task 3
+
+
